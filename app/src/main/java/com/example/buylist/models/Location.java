@@ -1,0 +1,57 @@
+package com.example.buylist.models;
+
+public class Location {
+
+    private String name, description, address;
+
+    public Location() {
+    }
+
+    public Location(String name) {
+        this.name = name;
+    }
+
+    public Location(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
+
+    public Location(String name, String description, String address) {
+        this.name = name;
+        this.description = description;
+        this.address = address;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
+}
