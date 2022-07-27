@@ -22,27 +22,22 @@ public class AddTypeItemActivity extends AppCompatActivity {
 
     private static final String TEST_CONSTANT = "test constant";
     private Spinner spinner;
+    private ArrayList<String> another;
+
+    private Utils utils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_type_item);
 
-        SharedPreferences sharedPreference = this.getSharedPreferences("shopping_db",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreference.edit();
-        Gson gson = new Gson();
+        utils = new Utils(this);
+        another = new ArrayList<>();
 
         spinner = findViewById(R.id.spinnerTypesItem);
 
-
-
-        Type type = new TypeToken<ArrayList<TypeItem>>(){}.getType();
-        ArrayList<TypeItem> typeItems = gson.fromJson(sharedPreference.getString(TEST_CONSTANT,null),type);
-
-        if(typeItems!=null) {
-            ArrayList<String> another = new ArrayList<>();
-
-            for (TypeItem a : typeItems) {
+        if(utils.getTypeItems()!=null) {
+            for (TypeItem a : utils.getTypeItems()) {
                 another.add(a.getName());
             }
 
@@ -59,37 +54,21 @@ public class AddTypeItemActivity extends AppCompatActivity {
 
 
     public void addData(View view){
-        ArrayList<TypeItem> typeItems = new ArrayList<TypeItem>();
-        ArrayList<String> another = new ArrayList<>();
-        SharedPreferences sharedPreference = this.getSharedPreferences("shopping_db",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreference.edit();
-        Gson gson = new Gson();
 
-
-
-        ///////
-
+        another = new ArrayList<>();
         EditText nameTxt = findViewById(R.id.nameTypeTxt);
         EditText descTxt = findViewById(R.id.descTypeTxt);
         TextView testText = findViewById(R.id.testText);
         spinner = findViewById(R.id.spinnerTypesItem);
 
-        Type type = new TypeToken<ArrayList<TypeItem>>(){}.getType();
-        typeItems = gson.fromJson(sharedPreference.getString(TEST_CONSTANT,null),type);
-
         ////////////////////
 
         TypeItem typeItem = new TypeItem(nameTxt.getText().toString(),descTxt.getText().toString());
-        typeItems.add(typeItem);
-
-        editor.putString(TEST_CONSTANT,gson.toJson(typeItems));
-
-        editor.commit();
-
+        utils.addTypeItems(typeItem);
 
         /////////////////////////////////////
 
-        for(TypeItem a: typeItems){
+        for(TypeItem a: utils.getTypeItems()){
             another.add(a.getName());
         }
 
