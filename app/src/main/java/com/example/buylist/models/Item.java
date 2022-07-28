@@ -3,14 +3,14 @@ package com.example.buylist.models;
 public class Item {
 
     private String name,description;
-    private TypeItem typeItem;
+    private ItemType itemType;
 
     public Item() {
     }
 
-    public Item(String name, TypeItem typeItem) {
+    public Item(String name, ItemType itemType) {
         this.name = name;
-        this.typeItem = typeItem;
+        this.itemType = itemType;
     }
 
     public Item(String name, String description) {
@@ -18,10 +18,10 @@ public class Item {
         this.description = description;
     }
 
-    public Item(String name, String description, TypeItem typeItem) {
+    public Item(String name, String description, ItemType itemType) {
         this.name = name;
         this.description = description;
-        this.typeItem = typeItem;
+        this.itemType = itemType;
     }
 
     public void setName(String name) {
@@ -32,8 +32,8 @@ public class Item {
         this.description = description;
     }
 
-    public void setTypeItem(TypeItem typeItem) {
-        this.typeItem = typeItem;
+    public void setTypeItem(ItemType itemType) {
+        this.itemType = itemType;
     }
 
     public String getName() {
@@ -44,8 +44,8 @@ public class Item {
         return description;
     }
 
-    public TypeItem getTypeItem() {
-        return typeItem;
+    public ItemType getTypeItem() {
+        return itemType;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Item {
         return "Item{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", typeItem=" + typeItem.getName() +
+                ", typeItem=" + itemType.getName() +
                 '}';
     }
 }

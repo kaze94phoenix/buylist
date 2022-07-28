@@ -1,21 +1,15 @@
 package com.example.buylist;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.buylist.models.TypeItem;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.example.buylist.models.ItemType;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class AddTypeItemActivity extends AppCompatActivity {
@@ -35,8 +29,8 @@ public class AddTypeItemActivity extends AppCompatActivity {
 
         spinner = findViewById(R.id.spinnerTypesItem);
 
-        if(utils.getTypeItems()!=null) {
-            for (TypeItem a : utils.getTypeItems()) {
+        if(utils.getItemTypes()!=null) {
+            for (ItemType a : utils.getItemTypes()) {
                 another.add(a.getName());
             }
 
@@ -61,12 +55,12 @@ public class AddTypeItemActivity extends AppCompatActivity {
 
         ////////////////////
 
-        TypeItem typeItem = new TypeItem(nameTxt.getText().toString(),descTxt.getText().toString());
-        utils.addTypeItems(typeItem);
+        ItemType itemType = new ItemType(nameTxt.getText().toString(),descTxt.getText().toString());
+        utils.addItemType(itemType);
 
         /////////////////////////////////////
 
-        for(TypeItem a: utils.getTypeItems()){
+        for(ItemType a: utils.getItemTypes()){
             another.add(a.getName());
         }
 
@@ -83,9 +77,9 @@ public class AddTypeItemActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinnerTypesItem);
 
 
-        utils.deleteTypeItems(spinner.getSelectedItemPosition());
+        utils.deleteItemType(spinner.getSelectedItemPosition());
 
-        for(TypeItem a: utils.getTypeItems()){
+        for(ItemType a: utils.getItemTypes()){
             another.add(a.getName());
         }
 

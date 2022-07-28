@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/itemText"
+        android:id="@+id/itemNameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/itemNameLabel" />
 
     <EditText
-        android:id="@+id/itemDescriptionText"
+        android:id="@+id/itemDescriptionTxt"
         android:layout_width="208dp"
         android:layout_height="202dp"
         android:layout_marginTop="12dp"
@@ -51,7 +51,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.173"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemTypeSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/itemTypeSpinner"
+        android:onClick="addItem"
+        />
 
     <TextView
         android:id="@+id/itemDescriptionLabel"
@@ -62,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.17"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemText" />
+        app:layout_constraintTop_toBottomOf="@+id/itemNameTxt" />
 
     <Spinner
         android:id="@+id/itemTypeSpinner"
@@ -82,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemDescriptionText" />
+        app:layout_constraintTop_toBottomOf="@+id/itemDescriptionTxt" />
 
     <Button
         android:id="@+id/button2"

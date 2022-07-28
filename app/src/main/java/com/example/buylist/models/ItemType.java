@@ -1,16 +1,16 @@
 package com.example.buylist.models;
 
-public class TypeItem {
+public class ItemType {
     private String name, description;
 
-    public TypeItem() {
+    public ItemType() {
     }
 
-    public TypeItem(String name) {
+    public ItemType(String name) {
         this.name = name;
     }
 
-    public TypeItem(String name, String description) {
+    public ItemType(String name, String description) {
         this.name = name;
         this.description = description;
     }
