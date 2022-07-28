@@ -6,10 +6,22 @@ public class Purchase {
 
     private ItemLocation itemLocation;
     private Date date;
+    private int quantity;
 
-    public Purchase(ItemLocation itemLocation, Date date) {
+    public Purchase(ItemLocation itemLocation, Date date, int quantity) {
         this.itemLocation = itemLocation;
         this.date = date;
+        this.quantity = quantity;
+    }
+
+
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public void setItemLocation(ItemLocation itemLocation) {
@@ -33,6 +45,7 @@ public class Purchase {
         return "Purchase{" +
                 "itemLocation=" + itemLocation.toString() +
                 ", date=" + date +
+                ", quantity=" + quantity +
                 '}';
     }
 }

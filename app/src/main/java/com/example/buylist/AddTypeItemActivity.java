@@ -20,7 +20,6 @@ import java.util.ArrayList;
 
 public class AddTypeItemActivity extends AppCompatActivity {
 
-    private static final String TEST_CONSTANT = "test constant";
     private Spinner spinner;
     private ArrayList<String> another;
 
@@ -58,7 +57,6 @@ public class AddTypeItemActivity extends AppCompatActivity {
         another = new ArrayList<>();
         EditText nameTxt = findViewById(R.id.nameTypeTxt);
         EditText descTxt = findViewById(R.id.descTypeTxt);
-        TextView testText = findViewById(R.id.testText);
         spinner = findViewById(R.id.spinnerTypesItem);
 
         ////////////////////
@@ -77,5 +75,28 @@ public class AddTypeItemActivity extends AppCompatActivity {
         spinner.setAdapter(arrayAdapter);
 
     }
+
+
+    public void deleteData(View view){
+
+        another = new ArrayList<>();
+        spinner = findViewById(R.id.spinnerTypesItem);
+
+
+        utils.deleteTypeItems(spinner.getSelectedItemPosition());
+
+        for(TypeItem a: utils.getTypeItems()){
+            another.add(a.getName());
+        }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,  another);
+
+        spinner.setAdapter(arrayAdapter);
+
+
+
+    }
+
+
 
 }
