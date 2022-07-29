@@ -7,4 +7,85 @@
     android:layout_height="match_parent"
     tools:context=".AddLocationActivity">
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+  <TextView
+      android:id="@+id/locationNameLabel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="104dp"
+      android:text="Name"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.155"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <EditText
+      android:id="@+id/locationNameTxt"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:ems="10"
+      android:inputType="textPersonName"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.288"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/locationNameLabel" />
+
+  <EditText
+      android:id="@+id/locationDescriptionTxt"
+      android:layout_width="210dp"
+      android:layout_height="102dp"
+      android:layout_marginTop="8dp"
+      android:ems="10"
+      android:gravity="start|top"
+      android:inputType="textMultiLine"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.288"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/locationDescriptionLabel" />
+
+  <TextView
+      android:id="@+id/locationDescriptionLabel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="32dp"
+      android:text="Description"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.17"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/locationNameTxt" />
+
+  <EditText
+      android:id="@+id/locationAdressTxt"
+      android:layout_width="219dp"
+      android:layout_height="48dp"
+      android:layout_marginTop="8dp"
+      android:ems="10"
+      android:gravity="start|top"
+      android:inputType="textMultiLine"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.302"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/locationAdressLabel" />
+
+  <TextView
+      android:id="@+id/locationAdressLabel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="28dp"
+      android:text="Adress"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.158"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/locationDescriptionTxt" />
+
+  <Button
+      android:id="@+id/button"
+      android:layout_width="94dp"
+      android:layout_height="52dp"
+      android:layout_marginTop="56dp"
+      android:text="Save"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.182"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/locationAdressTxt" />
+</androidx.constraintlayout.widget.ConstraintLayout>
