@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.example.buylist.models.ItemType;
 import com.example.buylist.models.Item;
+import com.example.buylist.models.Location;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -17,6 +18,7 @@ public class Utils {
 
     private static final String ITEMS_TYPE = "items type";
     private static final String ITEMS = "items";
+    private static final String LOCATIONS = "locations";
 
     private SharedPreferences sharedPreference;
     private SharedPreferences.Editor editor;
@@ -25,6 +27,7 @@ public class Utils {
 
     private ArrayList<ItemType> itemTypes;
     private ArrayList<Item> items;
+    private ArrayList<Location> locations;
 
 
     public Utils(Context context) {
@@ -42,6 +45,14 @@ public class Utils {
         items = gson.fromJson(sharedPreference.getString(ITEMS,null),typeItem);
         if(items==null)
             items = new ArrayList<Item>();
+
+
+        Type typeLocation = new TypeToken<ArrayList<Location>>(){}.getType();
+        locations = gson.fromJson(sharedPreference.getString(LOCATIONS,null),typeLocation);
+        if(locations==null)
+            locations = new ArrayList<Location>();
+
+
 
 
     }
@@ -75,6 +86,16 @@ public class Utils {
     public void addItems(Item item){
         items.add(item);
         editor.putString(ITEMS,gson.toJson(items));
+        editor.commit();
+    }
+
+    public ArrayList<Location> getItLocations() {
+        return locations;
+    }
+
+    public void addLocation(Location location){
+        locations.add(location);
+        editor.putString(LOCATIONS,gson.toJson(locations));
         editor.commit();
     }
 
