@@ -6,16 +6,17 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.buylist.models.Location;
+import com.example.buylist.models.DataManager;
 
 public class AddLocationActivity extends AppCompatActivity {
-    private Utils utils;
+    private DataManager dataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_location);
 
-        utils = new Utils(this);
+        dataManager = new DataManager(this);
 
     }
 
@@ -25,7 +26,7 @@ public class AddLocationActivity extends AppCompatActivity {
         EditText descTxt = findViewById(R.id.locationDescriptionTxt);
         EditText addressTxt = findViewById(R.id.locationAdressTxt);
 
-        utils.addLocation(new Location(nameTxt.getText().toString(),descTxt.getText().toString(),addressTxt.getText().toString()));
+        dataManager.addLocation(new Location(nameTxt.getText().toString(),descTxt.getText().toString(),addressTxt.getText().toString()));
 
 
     }

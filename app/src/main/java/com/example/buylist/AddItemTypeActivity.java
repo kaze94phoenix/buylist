@@ -9,28 +9,29 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buylist.models.ItemType;
+import com.example.buylist.models.DataManager;
 
 import java.util.ArrayList;
 
-public class AddTypeItemActivity extends AppCompatActivity {
+public class AddItemTypeActivity extends AppCompatActivity {
 
     private Spinner spinner;
     private ArrayList<String> another;
 
-    private Utils utils;
+    private DataManager dataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_type_item);
 
-        utils = new Utils(this);
+        dataManager = new DataManager(this);
         another = new ArrayList<>();
 
         spinner = findViewById(R.id.spinnerTypesItem);
 
-        if(utils.getItemTypes()!=null) {
-            for (ItemType a : utils.getItemTypes()) {
+        if(dataManager.getItemTypes()!=null) {
+            for (ItemType a : dataManager.getItemTypes()) {
                 another.add(a.getName());
             }
 
@@ -56,11 +57,11 @@ public class AddTypeItemActivity extends AppCompatActivity {
         ////////////////////
 
         ItemType itemType = new ItemType(nameTxt.getText().toString(),descTxt.getText().toString());
-        utils.addItemType(itemType);
+        dataManager.addItemType(itemType);
 
         /////////////////////////////////////
 
-        for(ItemType a: utils.getItemTypes()){
+        for(ItemType a: dataManager.getItemTypes()){
             another.add(a.getName());
         }
 
@@ -77,9 +78,9 @@ public class AddTypeItemActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinnerTypesItem);
 
 
-        utils.deleteItemType(spinner.getSelectedItemPosition());
+        dataManager.deleteItemType(spinner.getSelectedItemPosition());
 
-        for(ItemType a: utils.getItemTypes()){
+        for(ItemType a: dataManager.getItemTypes()){
             another.add(a.getName());
         }
 

@@ -10,6 +10,7 @@ import android.widget.Spinner;
 
 import com.example.buylist.models.Item;
 import com.example.buylist.models.ItemType;
+import com.example.buylist.models.DataManager;
 
 import java.util.ArrayList;
 
@@ -18,20 +19,20 @@ public class AddItemActivity extends AppCompatActivity {
     private Spinner spinner;
     private ArrayList<String> another;
 
-    private Utils utils;
+    private DataManager dataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
 
-        utils = new Utils(this);
+        dataManager = new DataManager(this);
         another = new ArrayList<>();
 
         spinner = findViewById(R.id.itemTypeSpinner);
 
-        if(utils.getItemTypes()!=null) {
-            for (ItemType a : utils.getItemTypes()) {
+        if(dataManager.getItemTypes()!=null) {
+            for (ItemType a : dataManager.getItemTypes()) {
                 another.add(a.getName());
             }
 
@@ -52,7 +53,7 @@ public class AddItemActivity extends AppCompatActivity {
         int itemPosition = spinner.getSelectedItemPosition();
 
 
-        utils.addItems(new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(),utils.getItemTypes().get(itemPosition)));
+        dataManager.addItems(new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(), dataManager.getItemTypes().get(itemPosition)));
 
 
 

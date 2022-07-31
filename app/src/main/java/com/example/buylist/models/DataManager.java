@@ -1,4 +1,4 @@
-package com.example.buylist;
+package com.example.buylist.models;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,7 +12,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class Utils {
+public class DataManager {
 
     private Context context;
 
@@ -30,7 +30,7 @@ public class Utils {
     private ArrayList<Location> locations;
 
 
-    public Utils(Context context) {
+    public DataManager(Context context) {
         sharedPreference = context.getSharedPreferences("shopping_db",Context.MODE_PRIVATE);
         editor = sharedPreference.edit();
 
