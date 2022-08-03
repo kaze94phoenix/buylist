@@ -15,10 +15,13 @@ import com.example.buylist.models.DataManager;
 
 import java.util.ArrayList;
 
-public class AddItemActivity extends AppCompatActivity {
+public class EditItemActivity extends AppCompatActivity {
 
+    private EditText txtName,txtDescription;
     private Spinner spinner;
     private ArrayList<String> another;
+    private Intent intent;
+    private int itemId;
 
     private DataManager dataManager;
 
@@ -27,10 +30,25 @@ public class AddItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
 
+        intent = getIntent();
+
         dataManager = new DataManager(this);
+
         another = new ArrayList<>();
 
+        txtName = findViewById(R.id.itemNameTxt);
+        txtDescription = findViewById(R.id.itemDescriptionTxt);
+
         spinner = findViewById(R.id.itemTypeSpinner);
+
+        itemId = intent.getIntExtra(ItemsListActivity.EXTRA_ITEM_ID,0);
+
+        txtName.setText(dataManager.getItems().get(itemId).getName());
+        txtDescription.setText(dataManager.getItems().get(itemId).getDescription());
+
+
+
+
 
         if(dataManager.getItemTypes()!=null) {
             for (ItemType a : dataManager.getItemTypes()) {
@@ -42,12 +60,12 @@ public class AddItemActivity extends AppCompatActivity {
             spinner.setAdapter(arrayAdapter);
         }
 
-        
+
 
     }
 
 
-    public void addItem(View view){
+    public void editItem(View view){
 
         EditText nameTxt = findViewById(R.id.itemNameTxt);
         EditText descriptionTxt = findViewById(R.id.itemDescriptionTxt);

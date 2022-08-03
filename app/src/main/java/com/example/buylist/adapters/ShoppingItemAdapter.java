@@ -1,5 +1,7 @@
 package com.example.buylist.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.buylist.EditItemActivity;
+import com.example.buylist.ItemsListActivity;
 import com.example.buylist.R;
 import com.example.buylist.models.Item;
 
@@ -24,6 +28,10 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
         notifyDataSetChanged();
     }
 
+
+
+
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,6 +45,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //binds the attributes of the model to the viewHolder
         holder.txtItemName.setText(items.get(position).getName());
+        holder.txtItemId.setText(String.valueOf(position));
     }
 
 
@@ -47,11 +56,15 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtItemName, txtItemAvgPrice;
+        private TextView txtItemName, txtItemAvgPrice, txtItemId;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtItemName=itemView.findViewById(R.id.itemName);
             txtItemAvgPrice=itemView.findViewById(R.id.itemAvgPrice);
+            txtItemId = itemView.findViewById(R.id.itemId);
         }
+
+
+
     }
 }

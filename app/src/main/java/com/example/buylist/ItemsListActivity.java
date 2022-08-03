@@ -4,12 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.buylist.adapters.ShoppingItemAdapter;
 import com.example.buylist.models.DataManager;
 
 public class ItemsListActivity extends AppCompatActivity {
+    public static final String EXTRA_ITEM_ID = "item_id";
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +26,7 @@ public class ItemsListActivity extends AppCompatActivity {
 
         shoppingItemAdapter.setItems(dataManager.getItems());
 
-        RecyclerView recyclerView = findViewById(R.id.itemsListView);
+        recyclerView = findViewById(R.id.itemsListView);
 
 
         recyclerView.setAdapter(shoppingItemAdapter);
@@ -30,5 +35,20 @@ public class ItemsListActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public void goToEditItem(View view){
+        Intent intent = new Intent(this,EditItemActivity.class);
+        TextView itemIdLabel = findViewById(R.id.itemId);
+        String test = itemIdLabel.getText().toString();
+        int itemId = Integer.parseInt(itemIdLabel.getText().toString());
+        intent.putExtra(EXTRA_ITEM_ID,itemId);
+        startActivity(intent);
+    }
+
+
+    public void goToAddItems(View view){
+        Intent intent = new Intent(this,AddItemActivity.class);
+        startActivity(intent);
     }
 }

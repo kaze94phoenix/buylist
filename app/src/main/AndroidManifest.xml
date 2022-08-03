@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BuyList">
         <activity
+            android:name=".EditItemActivity"
+            android:exported="false" />
+        <activity
             android:name=".ItemsListActivity"
             android:exported="true" />
         <activity
