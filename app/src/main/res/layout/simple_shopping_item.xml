@@ -37,7 +37,6 @@
         android:text="*"
         app:layout_constraintStart_toEndOf="@+id/itemAvgPrice"
         app:layout_constraintTop_toBottomOf="@+id/itemName"
-        android:onClick="onClick"
         />
 
     <Button

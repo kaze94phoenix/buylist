@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 
 public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapter.ViewHolder> {
     private ArrayList<Item> items;
+    private EditItemListener editItemListener;
 
     public ShoppingItemAdapter() {
     }
@@ -26,6 +28,10 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     public void setItems(ArrayList<Item> items) {
         this.items = items;
         notifyDataSetChanged();
+    }
+
+    public void setEditItemListener(EditItemListener editItemListener){
+        this.editItemListener=editItemListener;
     }
 
 
@@ -37,7 +43,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //sets the view used on viewholder
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.simple_shopping_item,parent,false);
-        ViewHolder holder = new ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view, editItemListener);
         return holder;
     }
 
@@ -55,16 +61,32 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
 
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView txtItemName, txtItemAvgPrice, txtItemId;
-        public ViewHolder(@NonNull View itemView) {
+        private Button editBtn;
+        private EditItemListener editItemListener;
+
+        public ViewHolder(@NonNull View itemView, EditItemListener editItemListener) {
             super(itemView);
             txtItemName=itemView.findViewById(R.id.itemName);
             txtItemAvgPrice=itemView.findViewById(R.id.itemAvgPrice);
             txtItemId = itemView.findViewById(R.id.itemId);
+            editBtn = itemView.findViewById(R.id.btnEditItem);
+
+            this.editItemListener=editItemListener;
+            editBtn.setOnClickListener(this);
+
+
         }
 
 
+        @Override
+        public void onClick(View view) {
+            editItemListener.editClick(getAdapterPosition());
+        }
+    }
 
+    public interface EditItemListener{
+        void editClick(int position);
     }
 }

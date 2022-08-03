@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.buylist.adapters.ShoppingItemAdapter;
 import com.example.buylist.models.DataManager;
 
-public class ItemsListActivity extends AppCompatActivity {
+public class ItemsListActivity extends AppCompatActivity implements ShoppingItemAdapter.EditItemListener {
     public static final String EXTRA_ITEM_ID = "item_id";
     private RecyclerView recyclerView;
 
@@ -25,9 +27,9 @@ public class ItemsListActivity extends AppCompatActivity {
         ShoppingItemAdapter shoppingItemAdapter = new ShoppingItemAdapter();
 
         shoppingItemAdapter.setItems(dataManager.getItems());
+        shoppingItemAdapter.setEditItemListener(this);
 
         recyclerView = findViewById(R.id.itemsListView);
-
 
         recyclerView.setAdapter(shoppingItemAdapter);
 
@@ -38,17 +40,19 @@ public class ItemsListActivity extends AppCompatActivity {
     }
 
     public void goToEditItem(View view){
-        Intent intent = new Intent(this,EditItemActivity.class);
-        TextView itemIdLabel = findViewById(R.id.itemId);
-        String test = itemIdLabel.getText().toString();
-        int itemId = Integer.parseInt(itemIdLabel.getText().toString());
-        intent.putExtra(EXTRA_ITEM_ID,itemId);
-        startActivity(intent);
+
     }
 
 
     public void goToAddItems(View view){
         Intent intent = new Intent(this,AddItemActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void editClick(int position) {
+        Intent intent = new Intent(this,EditItemActivity.class);
+        intent.putExtra(EXTRA_ITEM_ID,position);
         startActivity(intent);
     }
 }
