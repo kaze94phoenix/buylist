@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.example.buylist.adapters.ShoppingItemAdapter;
 import com.example.buylist.models.DataManager;
 
-public class ItemsListActivity extends AppCompatActivity implements ShoppingItemAdapter.EditItemListener {
+public class ItemsListActivity extends AppCompatActivity {
     public static final String EXTRA_ITEM_ID = "item_id";
     private RecyclerView recyclerView;
 
@@ -27,7 +27,8 @@ public class ItemsListActivity extends AppCompatActivity implements ShoppingItem
         ShoppingItemAdapter shoppingItemAdapter = new ShoppingItemAdapter();
 
         shoppingItemAdapter.setItems(dataManager.getItems());
-        shoppingItemAdapter.setEditItemListener(this);
+        shoppingItemAdapter.setContext(this);
+
 
         recyclerView = findViewById(R.id.itemsListView);
 
@@ -49,10 +50,5 @@ public class ItemsListActivity extends AppCompatActivity implements ShoppingItem
         startActivity(intent);
     }
 
-    @Override
-    public void editClick(int position) {
-        Intent intent = new Intent(this,EditItemActivity.class);
-        intent.putExtra(EXTRA_ITEM_ID,position);
-        startActivity(intent);
-    }
+
 }

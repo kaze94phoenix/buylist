@@ -20,19 +20,25 @@ import java.util.ArrayList;
 
 public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapter.ViewHolder> {
     private ArrayList<Item> items;
-    private EditItemListener editItemListener;
+    //ID of each item used to navigate to or manipulate each item
+    private static final String EXTRA_ITEM_ID = "item_id";
+    //Context of the RecyclerView activity
+    private Context context;
 
     public ShoppingItemAdapter() {
     }
 
+    //Sets the list of items of the adapter
     public void setItems(ArrayList<Item> items) {
         this.items = items;
         notifyDataSetChanged();
     }
 
-    public void setEditItemListener(EditItemListener editItemListener){
-        this.editItemListener=editItemListener;
+    //Sets the context/Activity of the recyclerView
+    public void setContext(Context context){
+        this.context=context;
     }
+
 
 
 
@@ -41,9 +47,9 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //sets the view used on viewholder
+        //sets and inflates the view with the viewholder
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.simple_shopping_item,parent,false);
-        ViewHolder holder = new ViewHolder(view, editItemListener);
+        ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
@@ -61,19 +67,21 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
 
     }
 
+    //Inner Class ViewHolder that takes the View Items to be used on the adapter
+    //implements on click listener
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView txtItemName, txtItemAvgPrice, txtItemId;
         private Button editBtn;
-        private EditItemListener editItemListener;
 
-        public ViewHolder(@NonNull View itemView, EditItemListener editItemListener) {
+
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtItemName=itemView.findViewById(R.id.itemName);
             txtItemAvgPrice=itemView.findViewById(R.id.itemAvgPrice);
             txtItemId = itemView.findViewById(R.id.itemId);
             editBtn = itemView.findViewById(R.id.btnEditItem);
 
-            this.editItemListener=editItemListener;
+            //gets the button to use the onclicklistener
             editBtn.setOnClickListener(this);
 
 
@@ -82,11 +90,11 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
 
         @Override
         public void onClick(View view) {
-            editItemListener.editClick(getAdapterPosition());
+            Intent intent = new Intent(context,EditItemActivity.class);
+            intent.putExtra(EXTRA_ITEM_ID,getAdapterPosition());
+            context.startActivity(intent);
         }
     }
 
-    public interface EditItemListener{
-        void editClick(int position);
-    }
+
 }
