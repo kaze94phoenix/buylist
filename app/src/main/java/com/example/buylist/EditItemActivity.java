@@ -72,15 +72,10 @@ public class EditItemActivity extends AppCompatActivity {
         int itemPosition = spinner.getSelectedItemPosition();
 
 
-        dataManager.addItems(new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(), dataManager.getItemTypes().get(itemPosition)));
+        dataManager.editItem(itemId,new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(), dataManager.getItemTypes().get(itemPosition)));
 
 
 
-    }
-
-    public void goToAddItemType(View view){
-        Intent intent = new Intent(this, AddItemTypeActivity.class);
-        startActivity(intent);
     }
 
 }

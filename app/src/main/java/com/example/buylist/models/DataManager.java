@@ -79,6 +79,12 @@ public class DataManager {
     }
 
 
+    public void editItem(int position, Item item){
+        items.set(position,item);
+        editor.putString(ITEMS,gson.toJson(items));
+        editor.commit();
+    }
+
     public ArrayList<Item> getItems() {
         return items;
     }
