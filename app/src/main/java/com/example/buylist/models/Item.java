@@ -44,7 +44,7 @@ public class Item {
         return description;
     }
 
-    public ItemType getTypeItem() {
+    public ItemType getItemType() {
         return itemType;
     }
 

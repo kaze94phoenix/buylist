@@ -22,6 +22,7 @@ public class EditItemActivity extends AppCompatActivity {
     private ArrayList<String> another;
     private Intent intent;
     private int itemId;
+    private Item item;
 
     private DataManager dataManager;
 
@@ -43,6 +44,8 @@ public class EditItemActivity extends AppCompatActivity {
 
         itemId = intent.getIntExtra(ItemsListActivity.EXTRA_ITEM_ID,0);
 
+        item = dataManager.getItems().get(itemId);
+
         txtName.setText(dataManager.getItems().get(itemId).getName());
         txtDescription.setText(dataManager.getItems().get(itemId).getDescription());
 
@@ -58,6 +61,13 @@ public class EditItemActivity extends AppCompatActivity {
             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, another);
 
             spinner.setAdapter(arrayAdapter);
+
+            for(int i=0; i<dataManager.getItemTypes().size(); i++)
+                if(item.getItemType().compareTo(dataManager.getItemTypes().get(i))>0)
+                    spinner.setSelection(i);
+
+
+
         }
 
 

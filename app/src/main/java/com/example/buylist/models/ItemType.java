@@ -1,6 +1,6 @@
 package com.example.buylist.models;
 
-public class ItemType {
+public class ItemType implements Comparable<ItemType> {
     private String name, description;
 
     public ItemType() {
@@ -37,5 +37,13 @@ public class ItemType {
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(ItemType itemType) {
+        if(name.equals(itemType.getName()) & description.equals(itemType.getDescription()))
+            return 1;
+        else
+            return -1;
     }
 }
