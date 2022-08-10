@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.buylist.models.Item;
 import com.example.buylist.models.ItemType;
@@ -19,7 +20,7 @@ public class AddItemActivity extends AppCompatActivity {
 
     private Spinner spinner;
     private ArrayList<String> another;
-
+    private Intent intent;
     private DataManager dataManager;
 
     @Override
@@ -55,13 +56,15 @@ public class AddItemActivity extends AppCompatActivity {
 
 
         dataManager.addItems(new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(), dataManager.getItemTypes().get(itemPosition)));
-
+        Toast.makeText(this, "Item Added", Toast.LENGTH_SHORT).show();
+        intent = new Intent(this, ItemsListActivity.class);
+        startActivity(intent);
 
 
     }
 
     public void goToAddItemType(View view){
-        Intent intent = new Intent(this, AddItemTypeActivity.class);
+        intent = new Intent(this, AddItemTypeActivity.class);
         startActivity(intent);
     }
 

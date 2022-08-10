@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.buylist.models.Item;
+import com.example.buylist.models.ItemLocation;
 import com.example.buylist.models.ItemType;
 import com.example.buylist.models.DataManager;
 
@@ -83,7 +85,10 @@ public class EditItemActivity extends AppCompatActivity {
 
 
         dataManager.editItem(itemId,new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(), dataManager.getItemTypes().get(itemPosition)));
+        Toast.makeText(this, "Item Edited", Toast.LENGTH_SHORT).show();
+        intent = new Intent(this, ItemsListActivity.class);
 
+        startActivity(intent);
 
 
     }
