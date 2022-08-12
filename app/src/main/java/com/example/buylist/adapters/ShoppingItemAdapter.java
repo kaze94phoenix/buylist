@@ -1,20 +1,24 @@
 package com.example.buylist.adapters;
 
-import android.content.Context;
-import android.content.Intent;
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.buylist.EditItemActivity;
-import com.example.buylist.ItemsListActivity;
 import com.example.buylist.R;
+import com.example.buylist.models.DataManager;
 import com.example.buylist.models.Item;
+import com.example.buylist.models.ItemType;
 
 import java.util.ArrayList;
 
@@ -23,7 +27,9 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     //ID of each item used to navigate to or manipulate each item
     private static final String EXTRA_ITEM_ID = "item_id";
     //Context of the RecyclerView activity
-    private Context context;
+    private Activity activity;
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
 
     public ShoppingItemAdapter() {
     }
@@ -35,8 +41,8 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     }
 
     //Sets the context/Activity of the recyclerView
-    public void setContext(Context context){
-        this.context=context;
+    public void setActivity(Activity activity){
+        this.activity=activity;
     }
 
 
@@ -72,10 +78,11 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView txtItemName, txtItemAvgPrice, txtItemId;
         private Button editBtn;
-
+      //  private ArrayList<Item> items;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+       //     this.items=items;
             txtItemName=itemView.findViewById(R.id.itemName);
             txtItemAvgPrice=itemView.findViewById(R.id.itemAvgPrice);
             txtItemId = itemView.findViewById(R.id.itemId);
@@ -90,9 +97,73 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(context,EditItemActivity.class);
+            dialogBuilder = new AlertDialog.Builder(activity);
+            final View editItemPopoutView = activity.getLayoutInflater().inflate(R.layout.edit_item_popup,null);
+            /////////////
+            EditText nameTxt = editItemPopoutView.findViewById(R.id.itemNameTxt);
+            EditText descriptionTxt = editItemPopoutView.findViewById(R.id.itemDescriptionTxt);
+            Spinner spinner = editItemPopoutView.findViewById(R.id.itemTypeSpinner);
+            Button editBtn = editItemPopoutView.findViewById(R.id.btnSaveItem);
+            Button cancelBtn = editItemPopoutView.findViewById(R.id.btnCancelItem);
+            ArrayList<String> another = new ArrayList<String>();
+            DataManager dataManager = new DataManager(activity);
+
+
+            /////////////
+            nameTxt.setText(items.get(getAdapterPosition()).getName());
+            descriptionTxt.setText(items.get(getAdapterPosition()).getDescription());
+
+            if(dataManager.getItemTypes()!=null) {
+                for (ItemType a : dataManager.getItemTypes()) {
+                    another.add(a.getName());
+                }
+
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_dropdown_item, another);
+
+                spinner.setAdapter(arrayAdapter);
+
+                for(int i=0; i<dataManager.getItemTypes().size(); i++)
+                    if (items.get(getAdapterPosition()).getItemType().compareTo(dataManager.getItemTypes().get(i)) > 0)
+                        spinner.setSelection(i);
+
+
+
+            }
+
+            int itemPosition = spinner.getSelectedItemPosition();
+
+            /////////////////////////
+            dialogBuilder.setView(editItemPopoutView);
+            dialog=dialogBuilder.create();
+            dialog.show();
+
+            ////////////////////
+
+            editBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dataManager.editItem(getAdapterPosition(),new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(), dataManager.getItemTypes().get(itemPosition)));
+                    items.set(getAdapterPosition(),new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(), dataManager.getItemTypes().get(itemPosition)));
+                    notifyItemChanged(getAdapterPosition());
+                    Toast.makeText(activity, "Item Edited", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            });
+
+
+            cancelBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+
+
+
+
+            /*Intent intent = new Intent(context,EditItemActivity.class);
             intent.putExtra(EXTRA_ITEM_ID,getAdapterPosition());
-            context.startActivity(intent);
+            context.startActivity(intent);*/
         }
     }
 

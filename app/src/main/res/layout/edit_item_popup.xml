@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context=".AddItemActivity">
 
     <TextView
@@ -46,12 +46,29 @@
         android:id="@+id/btnSaveItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-       android:text="Edit"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+         android:text="Edit"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintHorizontal_bias="0.187"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemTypeSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/itemTypeSpinner"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnCancelItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.991"
+        app:layout_constraintStart_toEndOf="@+id/btnSaveItem"
+        app:layout_constraintTop_toBottomOf="@+id/itemTypeSpinner"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/itemDescriptionLabel"
@@ -90,11 +107,11 @@
         android:layout_height="38dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:onClick="goToAddItemType"
         android:text="+"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/itemTypeSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/itemTypeLabel"
-        android:onClick="goToAddItemType"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/itemTypeLabel" />
 </androidx.constraintlayout.widget.ConstraintLayout>

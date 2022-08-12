@@ -43,7 +43,7 @@ public class ItemsListActivity extends AppCompatActivity {
         shoppingItemAdapter = new ShoppingItemAdapter();
 
         shoppingItemAdapter.setItems(dataManager.getItems());
-        shoppingItemAdapter.setContext(this);
+        shoppingItemAdapter.setActivity(this);
 
 
         recyclerView = findViewById(R.id.itemsListView);
