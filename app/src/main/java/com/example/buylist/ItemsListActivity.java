@@ -98,6 +98,10 @@ public class ItemsListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                dataManager.addItems(new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(), dataManager.getItemTypes().get(itemPosition)));
+                Toast.makeText(ItemsListActivity.this, "Item Added", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+
             }
         });
 
