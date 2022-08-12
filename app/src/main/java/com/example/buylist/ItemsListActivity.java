@@ -32,6 +32,7 @@ public class ItemsListActivity extends AppCompatActivity {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     DataManager dataManager;
+    ShoppingItemAdapter shoppingItemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class ItemsListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_items_list);
 
         dataManager = new DataManager(this);
-        ShoppingItemAdapter shoppingItemAdapter = new ShoppingItemAdapter();
+        shoppingItemAdapter = new ShoppingItemAdapter();
 
         shoppingItemAdapter.setItems(dataManager.getItems());
         shoppingItemAdapter.setContext(this);
@@ -100,6 +101,7 @@ public class ItemsListActivity extends AppCompatActivity {
 
                 dataManager.addItems(new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(), dataManager.getItemTypes().get(itemPosition)));
                 Toast.makeText(ItemsListActivity.this, "Item Added", Toast.LENGTH_SHORT).show();
+                shoppingItemAdapter.notifyItemInserted(dataManager.getItems().size()-1);
                 dialog.dismiss();
 
             }
