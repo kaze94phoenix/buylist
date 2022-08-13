@@ -75,9 +75,9 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
 
     //Inner Class ViewHolder that takes the View Items to be used on the adapter
     //implements on click listener
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView txtItemName, txtItemAvgPrice, txtItemId;
-        private Button editBtn;
+        private Button editBtn, deleteBtn;
       //  private ArrayList<Item> items;
 
         public ViewHolder(@NonNull View itemView) {
@@ -87,76 +87,73 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
             txtItemAvgPrice=itemView.findViewById(R.id.itemAvgPrice);
             txtItemId = itemView.findViewById(R.id.itemId);
             editBtn = itemView.findViewById(R.id.btnEditItem);
-
-            //gets the button to use the onclicklistener
-            editBtn.setOnClickListener(this);
-
-
-        }
-
-
-        @Override
-        public void onClick(View view) {
-            dialogBuilder = new AlertDialog.Builder(activity);
-            final View editItemPopoutView = activity.getLayoutInflater().inflate(R.layout.edit_item_popup,null);
-            /////////////
-            EditText nameTxt = editItemPopoutView.findViewById(R.id.itemNameTxt);
-            EditText descriptionTxt = editItemPopoutView.findViewById(R.id.itemDescriptionTxt);
-            Spinner spinner = editItemPopoutView.findViewById(R.id.itemTypeSpinner);
-            Button editBtn = editItemPopoutView.findViewById(R.id.btnSaveItem);
-            Button cancelBtn = editItemPopoutView.findViewById(R.id.btnCancelItem);
-            ArrayList<String> another = new ArrayList<String>();
+            deleteBtn = itemView.findViewById(R.id.btnDeleteItem);
             DataManager dataManager = new DataManager(activity);
 
-
-            /////////////
-            nameTxt.setText(items.get(getAdapterPosition()).getName());
-            descriptionTxt.setText(items.get(getAdapterPosition()).getDescription());
-
-            if(dataManager.getItemTypes()!=null) {
-                for (ItemType a : dataManager.getItemTypes()) {
-                    another.add(a.getName());
-                }
-
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_dropdown_item, another);
-
-                spinner.setAdapter(arrayAdapter);
-
-                for(int i=0; i<dataManager.getItemTypes().size(); i++)
-                    if (items.get(getAdapterPosition()).getItemType().compareTo(dataManager.getItemTypes().get(i)) > 0)
-                        spinner.setSelection(i);
-
-
-
-            }
-
-            int itemPosition = spinner.getSelectedItemPosition();
-
-            /////////////////////////
-            dialogBuilder.setView(editItemPopoutView);
-            dialog=dialogBuilder.create();
-            dialog.show();
-
-            ////////////////////
-
+            //gets the button to use the onclicklistener
             editBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    dataManager.editItem(getAdapterPosition(),new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(), dataManager.getItemTypes().get(itemPosition)));
-                    items.set(getAdapterPosition(),new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(), dataManager.getItemTypes().get(itemPosition)));
-                    notifyItemChanged(getAdapterPosition());
-                    Toast.makeText(activity, "Item Edited", Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
-                }
-            });
+                    dialogBuilder = new AlertDialog.Builder(activity);
+                    final View editItemPopoutView = activity.getLayoutInflater().inflate(R.layout.edit_item_popup,null);
+                    /////////////
+                    EditText nameTxt = editItemPopoutView.findViewById(R.id.itemNameTxt);
+                    EditText descriptionTxt = editItemPopoutView.findViewById(R.id.itemDescriptionTxt);
+                    Spinner spinner = editItemPopoutView.findViewById(R.id.itemTypeSpinner);
+                    Button editBtn = editItemPopoutView.findViewById(R.id.btnSaveItem);
+                    Button cancelBtn = editItemPopoutView.findViewById(R.id.btnCancelItem);
+                    ArrayList<String> another = new ArrayList<String>();
 
 
-            cancelBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialog.dismiss();
-                }
-            });
+
+                    /////////////
+                    nameTxt.setText(items.get(getAdapterPosition()).getName());
+                    descriptionTxt.setText(items.get(getAdapterPosition()).getDescription());
+
+                    if(dataManager.getItemTypes()!=null) {
+                        for (ItemType a : dataManager.getItemTypes()) {
+                            another.add(a.getName());
+                        }
+
+                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_dropdown_item, another);
+
+                        spinner.setAdapter(arrayAdapter);
+
+                        for(int i=0; i<dataManager.getItemTypes().size(); i++)
+                            if (items.get(getAdapterPosition()).getItemType().compareTo(dataManager.getItemTypes().get(i)) > 0)
+                                spinner.setSelection(i);
+
+
+
+                    }
+
+                    int itemPosition = spinner.getSelectedItemPosition();
+
+                    /////////////////////////
+                    dialogBuilder.setView(editItemPopoutView);
+                    dialog=dialogBuilder.create();
+                    dialog.show();
+
+                    ////////////////////
+
+                    editBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dataManager.editItem(getAdapterPosition(),new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(), dataManager.getItemTypes().get(itemPosition)));
+                            items.set(getAdapterPosition(),new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(), dataManager.getItemTypes().get(itemPosition)));
+                            notifyItemChanged(getAdapterPosition());
+                            Toast.makeText(activity, "Item Edited", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    });
+
+
+                    cancelBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
 
 
 
@@ -164,7 +161,52 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
             /*Intent intent = new Intent(context,EditItemActivity.class);
             intent.putExtra(EXTRA_ITEM_ID,getAdapterPosition());
             context.startActivity(intent);*/
+                }
+            });
+
+            deleteBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialogBuilder = new AlertDialog.Builder(activity);
+                    final View deleteItemPopout = activity.getLayoutInflater().inflate(R.layout.delete_item_popout,null);
+
+                    Button yesBtn = deleteItemPopout.findViewById(R.id.yesDelete);
+                    Button noBtn = deleteItemPopout.findViewById(R.id.noDelete);
+
+
+                    dialogBuilder.setView(deleteItemPopout);
+                    dialog = dialogBuilder.create();
+                    dialog.show();
+
+
+                    noBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    yesBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dataManager.deleteItem(getAdapterPosition());
+                            items.remove(getAdapterPosition());
+                            notifyItemRemoved(getAdapterPosition());
+                            Toast.makeText(activity, "Item Deleted", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    });
+
+                }
+            });
+
+
+
         }
+
+
+
+
     }
 
 

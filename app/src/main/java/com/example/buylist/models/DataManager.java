@@ -95,6 +95,12 @@ public class DataManager {
         editor.commit();
     }
 
+    public void deleteItem(int position){
+        items.remove(position);
+        editor.putString(ITEMS,gson.toJson(items));
+        editor.commit();
+    }
+
     public ArrayList<Location> getItLocations() {
         return locations;
     }
