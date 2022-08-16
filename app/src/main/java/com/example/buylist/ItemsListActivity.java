@@ -73,7 +73,7 @@ public class ItemsListActivity extends AppCompatActivity {
         dialogBuilder = new AlertDialog.Builder(this);
         final View addItemPopoutView = getLayoutInflater().inflate(R.layout.add_item_popup,null);
 
-        Spinner spinner = addItemPopoutView.findViewById(R.id.itemTypeSpinnerPo);
+        Spinner spinner = addItemPopoutView.findViewById(R.id.itemTypeSpinner);
         ArrayList<String> another = new ArrayList<String>();
         if(dataManager.getItemTypes()!=null)
             for (ItemType a : dataManager.getItemTypes())
@@ -83,10 +83,10 @@ public class ItemsListActivity extends AppCompatActivity {
         spinner.setAdapter(arrayAdapter);
 
 
-        EditText nameTxt = addItemPopoutView.findViewById(R.id.itemNameTxtPo);
-        EditText descriptionTxt = addItemPopoutView.findViewById(R.id.itemDescriptionTxtPo);
-        Button saveBtn = addItemPopoutView.findViewById(R.id.btnSaveItemPo);
-        Button cancelBtn = addItemPopoutView.findViewById(R.id.btnCancelItemPo);
+        EditText nameTxt = addItemPopoutView.findViewById(R.id.itemNameTxt);
+        EditText descriptionTxt = addItemPopoutView.findViewById(R.id.itemDescriptionTxt);
+        Button saveBtn = addItemPopoutView.findViewById(R.id.btnSaveItem);
+        Button cancelBtn = addItemPopoutView.findViewById(R.id.btnCancelItem);
         int itemPosition = spinner.getSelectedItemPosition();
 
         ///////////////////////

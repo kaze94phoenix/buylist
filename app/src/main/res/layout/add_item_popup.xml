@@ -7,7 +7,7 @@
     tools:context=".AddItemActivity">
 
     <TextView
-        android:id="@+id/itemPriceLabel"
+        android:id="@+id/itemNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/itemPriceTxt"
+        android:id="@+id/itemNameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -27,10 +27,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.288"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemPriceLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/itemNameLabel" />
 
     <EditText
-        android:id="@+id/itemDescriptionTxtPo"
+        android:id="@+id/itemDescriptionTxt"
         android:layout_width="208dp"
         android:layout_height="202dp"
         android:layout_marginTop="12dp"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/itemDescriptionLabel" />
 
     <Button
-        android:id="@+id/btnSaveItemLocation"
+        android:id="@+id/btnSaveItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -51,12 +51,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.173"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/itemTypeSpinner"
         android:onClick="addItem"
         />
 
     <Button
-        android:id="@+id/btnCancelItemLocation"
+        android:id="@+id/btnCancelItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -66,8 +66,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.609"
-        app:layout_constraintStart_toEndOf="@+id/btnSaveItemLocation"
-        app:layout_constraintTop_toBottomOf="@+id/locationSpinner" />
+        app:layout_constraintStart_toEndOf="@+id/btnSaveItem"
+        app:layout_constraintTop_toBottomOf="@+id/itemTypeSpinner" />
 
     <TextView
         android:id="@+id/itemDescriptionLabel"
@@ -78,19 +78,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.17"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemPriceTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/itemNameTxt" />
 
     <Spinner
-        android:id="@+id/locationSpinner"
+        android:id="@+id/itemTypeSpinner"
         android:layout_width="186dp"
         android:layout_height="27dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/itemTypeLabel" />
 
     <TextView
-        android:id="@+id/locationLabel"
+        android:id="@+id/itemTypeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -98,7 +98,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.129"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemDescriptionTxtPo" />
+        app:layout_constraintTop_toBottomOf="@+id/itemDescriptionTxt" />
 
     <Button
         android:id="@+id/goAddLocation"
@@ -111,8 +111,8 @@
         android:text="+"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/locationSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/locationLabel" />
+        app:layout_constraintStart_toEndOf="@+id/itemTypeSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/itemTypeLabel" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

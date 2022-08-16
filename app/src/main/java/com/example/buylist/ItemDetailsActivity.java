@@ -49,5 +49,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
 
     public void addItemLocation(View view){
 
+        dialogBuilder = new AlertDialog.Builder(this);
+
     }
 }
