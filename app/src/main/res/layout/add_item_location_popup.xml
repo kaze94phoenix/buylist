@@ -10,10 +10,10 @@
         android:id="@+id/itemPriceLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:text="Name"
+        android:layout_marginTop="84dp"
+        android:text="Price"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,19 +28,6 @@
         app:layout_constraintHorizontal_bias="0.288"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemPriceLabel" />
-
-    <EditText
-        android:id="@+id/itemDescriptionTxtPo"
-        android:layout_width="208dp"
-        android:layout_height="202dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.285"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemDescriptionLabel" />
 
     <Button
         android:id="@+id/btnSaveItemLocation"
@@ -69,17 +56,6 @@
         app:layout_constraintStart_toEndOf="@+id/btnSaveItemLocation"
         app:layout_constraintTop_toBottomOf="@+id/locationSpinner" />
 
-    <TextView
-        android:id="@+id/itemDescriptionLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="Description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.17"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemPriceTxt" />
-
     <Spinner
         android:id="@+id/locationSpinner"
         android:layout_width="186dp"
@@ -93,12 +69,12 @@
         android:id="@+id/locationLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Item Type"
+        android:layout_marginTop="16dp"
+        android:text="Location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.129"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemDescriptionTxtPo" />
+        app:layout_constraintTop_toBottomOf="@+id/itemPriceTxt" />
 
     <Button
         android:id="@+id/goAddLocation"

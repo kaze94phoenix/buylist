@@ -1,9 +1,11 @@
 package com.example.buylist;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.buylist.adapters.ShoppingItemAdapter;
@@ -16,7 +18,9 @@ public class ItemDetailsActivity extends AppCompatActivity {
     private TextView itemName,itemDescription, itemPrice, itemType;
     private DataManager dataManager;
     private ArrayList<Item> items;
-    Intent intent;
+    private Intent intent;
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,10 @@ public class ItemDetailsActivity extends AppCompatActivity {
         itemType.setText(items.get(itemId).getItemType().getName());
 
 
+
+    }
+
+    public void addItemLocation(View view){
 
     }
 }

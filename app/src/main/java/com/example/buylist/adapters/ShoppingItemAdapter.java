@@ -18,7 +18,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buylist.ItemDetailsActivity;
-import com.example.buylist.ItemsListActivity;
 import com.example.buylist.R;
 import com.example.buylist.models.DataManager;
 import com.example.buylist.models.Item;
@@ -185,7 +184,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                 @Override
                 public void onClick(View view) {
                     dialogBuilder = new AlertDialog.Builder(activity);
-                    final View deleteItemPopout = activity.getLayoutInflater().inflate(R.layout.delete_item_popout,null);
+                    final View deleteItemPopout = activity.getLayoutInflater().inflate(R.layout.delete_item_popup,null);
 
                     Button yesBtn = deleteItemPopout.findViewById(R.id.yesDelete);
                     Button noBtn = deleteItemPopout.findViewById(R.id.noDelete);
