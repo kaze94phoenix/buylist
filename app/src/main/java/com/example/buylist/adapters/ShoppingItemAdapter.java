@@ -1,6 +1,7 @@
 package com.example.buylist.adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.buylist.ItemDetailsActivity;
+import com.example.buylist.ItemsListActivity;
 import com.example.buylist.R;
 import com.example.buylist.models.DataManager;
 import com.example.buylist.models.Item;
@@ -26,11 +29,12 @@ import java.util.ArrayList;
 public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapter.ViewHolder> {
     private ArrayList<Item> items;
     //ID of each item used to navigate to or manipulate each item
-    private static final String EXTRA_ITEM_ID = "item_id";
+    public static final String EXTRA_ITEM_ID = "item_id";
     //Context of the RecyclerView activity
     private Activity activity;
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
+    Intent intent;
 
     public ShoppingItemAdapter() {
     }
@@ -96,7 +100,9 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
             constraintLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(activity, "Test", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(activity, ItemDetailsActivity.class);
+                    intent.putExtra(EXTRA_ITEM_ID,getAdapterPosition());
+                    activity.startActivity(intent);
                 }
             });
 
@@ -137,7 +143,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
 
                     }
 
-                    int itemPosition = spinner.getSelectedItemPosition();
+
 
                     /////////////////////////
                     dialogBuilder.setView(editItemPopoutView);
@@ -149,6 +155,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                     editBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            int itemPosition = spinner.getSelectedItemPosition();
                             dataManager.editItem(getAdapterPosition(),new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(), dataManager.getItemTypes().get(itemPosition)));
                             items.set(getAdapterPosition(),new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(), dataManager.getItemTypes().get(itemPosition)));
                             notifyItemChanged(getAdapterPosition());
