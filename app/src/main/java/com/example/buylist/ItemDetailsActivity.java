@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.buylist.adapters.ShoppingItemAdapter;
@@ -50,6 +51,21 @@ public class ItemDetailsActivity extends AppCompatActivity {
     public void addItemLocation(View view){
 
         dialogBuilder = new AlertDialog.Builder(this);
+        final View addItemLocationView = getLayoutInflater().inflate(R.layout.add_item_location_popup,null);
+
+        Button cancelBtn = addItemLocationView.findViewById(R.id.btnCancelItemLocation);
+
+        dialogBuilder.setView(addItemLocationView);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
 
     }
 }
