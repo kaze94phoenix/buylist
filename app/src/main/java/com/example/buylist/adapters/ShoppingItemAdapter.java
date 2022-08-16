@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buylist.R;
@@ -78,17 +79,26 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView txtItemName, txtItemAvgPrice, txtItemId;
         private Button editBtn, deleteBtn;
+        private ConstraintLayout constraintLayout;
       //  private ArrayList<Item> items;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
        //     this.items=items;
+            constraintLayout = itemView.findViewById(R.id.simpleShoppingItem);
             txtItemName=itemView.findViewById(R.id.itemName);
             txtItemAvgPrice=itemView.findViewById(R.id.itemAvgPrice);
             txtItemId = itemView.findViewById(R.id.itemId);
             editBtn = itemView.findViewById(R.id.btnEditItem);
             deleteBtn = itemView.findViewById(R.id.btnDeleteItem);
             DataManager dataManager = new DataManager(activity);
+
+            constraintLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(activity, "Test", Toast.LENGTH_SHORT).show();
+                }
+            });
 
             //gets the button to use the onclicklistener
             editBtn.setOnClickListener(new View.OnClickListener() {
