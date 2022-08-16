@@ -44,23 +44,18 @@
         android:id="@+id/itemDDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginTop="20dp"
         android:text="Description"
-        app:layout_constraintBottom_toTopOf="@+id/locationPricesRV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.197"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemDType"
-        app:layout_constraintVertical_bias="0.906" />
+        app:layout_constraintTop_toBottomOf="@+id/itemDType" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/locationPricesRV"
         android:layout_width="413dp"
         android:layout_height="523dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/itemDDescription"
+        tools:layout_editor_absoluteX="-1dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
