@@ -24,7 +24,7 @@
         android:layout_marginTop="76dp"
         android:layout_marginEnd="112dp"
         android:text="Price"
-        app:layout_constraintBottom_toTopOf="@+id/locationPricesRV"
+        app:layout_constraintBottom_toTopOf="@+id/swipeRefresh"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -51,17 +51,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemDType" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/locationPricesRV"
-        android:layout_width="412dp"
-        android:layout_height="521dp"
-        android:layout_marginTop="32dp"
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="411dp"
+        android:layout_height="411dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemDDescription"
-        app:layout_constraintVertical_bias="0.351" />
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/locationPricesRV"
+            android:layout_width="412dp"
+            android:layout_height="521dp"
+            android:layout_marginTop="32dp" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
