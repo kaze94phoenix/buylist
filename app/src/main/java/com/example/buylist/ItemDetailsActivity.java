@@ -39,6 +39,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ItemLocationAdapter itemLocationAdapter;
+    public static final String EXTRA_ITEM_ID = "item_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +116,14 @@ public class ItemDetailsActivity extends AppCompatActivity {
 
 
 
+            addLocation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    intent = new Intent(ItemDetailsActivity.this, AddLocationActivity.class);
+                    intent.putExtra(EXTRA_ITEM_ID,itemId);
+                    startActivity(intent);
+                }
+            });
 
 
             saveBtn.setOnClickListener(new View.OnClickListener() {
