@@ -19,6 +19,7 @@ public class DataManager {
     private static final String ITEMS_TYPE = "items type";
     private static final String ITEMS = "items";
     private static final String LOCATIONS = "locations";
+    private static final String ITEM_LOCATIONS = "item_locations";
 
     private SharedPreferences sharedPreference;
     private SharedPreferences.Editor editor;
@@ -28,6 +29,7 @@ public class DataManager {
     private ArrayList<ItemType> itemTypes;
     private ArrayList<Item> items;
     private ArrayList<Location> locations;
+    private ArrayList<ItemLocation> itemLocations;
 
 
     public DataManager(Context context) {
@@ -52,12 +54,15 @@ public class DataManager {
         if(locations==null)
             locations = new ArrayList<Location>();
 
-
+        Type typeItemLocation = new TypeToken<ArrayList<ItemLocation>>(){}.getType();
+        itemLocations = gson.fromJson(sharedPreference.getString(ITEM_LOCATIONS,null),typeItemLocation);
+        if(itemLocations==null)
+            itemLocations = new ArrayList<ItemLocation>();
 
 
     }
 
-
+//Item Type
     public ArrayList<ItemType> getItemTypes(){
        return itemTypes;
     }
@@ -79,6 +84,7 @@ public class DataManager {
     }
 
 
+    //Item
     public void editItem(int position, Item item){
         items.set(position,item);
         editor.putString(ITEMS,gson.toJson(items));
@@ -101,13 +107,25 @@ public class DataManager {
         editor.commit();
     }
 
-    public ArrayList<Location> getItLocations() {
+    //Location
+    public ArrayList<Location> getLocations() {
         return locations;
     }
 
     public void addLocation(Location location){
         locations.add(location);
         editor.putString(LOCATIONS,gson.toJson(locations));
+        editor.commit();
+    }
+
+    //Item Location
+    public ArrayList<ItemLocation> getItemLocations() {
+        return itemLocations;
+    }
+
+    public void addItemLocation(ItemLocation itemLocation){
+        itemLocations.add(itemLocation);
+        editor.putString(ITEM_LOCATIONS,gson.toJson(itemLocations));
         editor.commit();
     }
 
