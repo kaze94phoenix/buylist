@@ -135,5 +135,11 @@ public class DataManager {
         editor.commit();
     }
 
+    public void deleteItemLocation(int position){
+        itemLocations.remove(position);
+        editor.putString(ITEM_LOCATIONS,gson.toJson(itemLocations));
+        editor.commit();
+    }
+
 
 }

@@ -159,13 +159,44 @@ public class ItemLocationAdapter extends RecyclerView.Adapter<ItemLocationAdapte
                             dialog.dismiss();
                         }
                     });
-
-                    Toast.makeText(activity, "Edit Button", Toast.LENGTH_SHORT).show();
                     break;
 
 
                 case R.id.deleteItemLocBtn:
-                    Toast.makeText(activity, "Delete Button", Toast.LENGTH_SHORT).show();
+                    Button yesBtn, noBtn;
+                    TextView questionLabel;
+
+                    dialogBuilder = new AlertDialog.Builder(activity);
+                    final View deleteItemLocView = activity.getLayoutInflater().inflate(R.layout.delete_item_popup,null);
+
+                    questionLabel = deleteItemLocView.findViewById(R.id.deleteItemLabel);
+                    questionLabel.setText("Do you want to delete Item Location?");
+
+                    yesBtn = deleteItemLocView.findViewById(R.id.yesDelete);
+                    noBtn = deleteItemLocView.findViewById(R.id.noDelete);
+
+                    dialogBuilder.setView(deleteItemLocView);
+                    dialog = dialogBuilder.create();
+                    dialog.show();
+
+                    yesBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dataManager.deleteItemLocation(getAdapterPosition());
+                            itemLocations.remove(getAdapterPosition());
+                            notifyItemRemoved(getAdapterPosition());
+                            Toast.makeText(activity, "Item Location deleted", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    });
+
+
+                    noBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
                     break;
 
             }
