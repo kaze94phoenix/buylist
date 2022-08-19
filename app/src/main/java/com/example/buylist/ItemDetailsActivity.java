@@ -97,13 +97,14 @@ public class ItemDetailsActivity extends AppCompatActivity {
         ArrayList<String> locationsNames = new ArrayList<>();
 
         Spinner locationsSpinner = addItemLocationView.findViewById(R.id.locationSpinner);
-        if (dataManager.getItemTypes() != null) {
+        if (dataManager.getLocations() != null) {
             for (Location a : locations) {
                 locationsNames.add(a.getName());
             }
 
             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, locationsNames);
             locationsSpinner.setAdapter(arrayAdapter);
+        }
 
             EditText price = addItemLocationView.findViewById(R.id.itemPriceTxt);
             Button cancelBtn = addItemLocationView.findViewById(R.id.btnCancelItemLocation);
@@ -144,6 +145,6 @@ public class ItemDetailsActivity extends AppCompatActivity {
                 }
             });
 
-        }
+
     }
 }
