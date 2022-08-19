@@ -129,5 +129,11 @@ public class DataManager {
         editor.commit();
     }
 
+    public void editItemLocation(int position, ItemLocation itemLocation){
+        itemLocations.set(position,itemLocation);
+        editor.putString(ITEM_LOCATIONS,gson.toJson(itemLocations));
+        editor.commit();
+    }
+
 
 }
