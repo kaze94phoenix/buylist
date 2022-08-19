@@ -118,6 +118,9 @@ public class ItemLocationAdapter extends RecyclerView.Adapter<ItemLocationAdapte
                         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_dropdown_item, locationsNames);
                         locationSpinner.setAdapter(arrayAdapter);
 
+                        for(int i=0; i<dataManager.getLocations().size(); i++)
+                            if(itemLocations.get(getAdapterPosition()).getLocation().compareTo(dataManager.getLocations().get(i))>0)
+                                locationSpinner.setSelection(i);
 
 
                     }

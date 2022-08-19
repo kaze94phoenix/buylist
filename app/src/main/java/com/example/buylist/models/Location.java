@@ -1,6 +1,6 @@
 package com.example.buylist.models;
 
-public class Location {
+public class Location implements Comparable<Location> {
 
     private String name, description, address;
 
@@ -53,5 +53,13 @@ public class Location {
                 ", description='" + description + '\'' +
                 ", address='" + address + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Location location) {
+        if(location.toString().equals(toString()))
+            return 1;
+        else
+            return -1;
     }
 }
