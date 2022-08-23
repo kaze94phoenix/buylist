@@ -64,8 +64,9 @@ public class ItemDetailsActivity extends AppCompatActivity {
 
         itemLocationAdapter = new ItemLocationAdapter();
 
-        itemLocationAdapter.setItemLocations(dataManager.getItemLocations());
         itemLocationAdapter.setActivity(this);
+        itemLocationAdapter.setItemLocations(dataManager.getItemLocations(), itemId);
+
 
 
         recyclerView = findViewById(R.id.locationPricesRV);
@@ -79,7 +80,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                itemLocationAdapter.setItemLocations(dataManager.getItemLocations());
+                itemLocationAdapter.setItemLocations(dataManager.getItemLocations(),itemId);
                 recyclerView.setAdapter(itemLocationAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(ItemDetailsActivity.this));
                 swipeRefreshLayout.setRefreshing(false);

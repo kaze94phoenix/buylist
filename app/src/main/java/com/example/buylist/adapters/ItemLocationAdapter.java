@@ -26,7 +26,7 @@ import com.example.buylist.models.Location;
 import java.util.ArrayList;
 
 public class ItemLocationAdapter extends RecyclerView.Adapter<ItemLocationAdapter.ViewHolder> {
-    private ArrayList<ItemLocation> itemLocations;
+    private ArrayList<ItemLocation> itemLocations, another;
     //ID of each item used to navigate to or manipulate each item
     public static final String EXTRA_ITEM_ID = "item_id";
     //Context of the RecyclerView activity
@@ -40,8 +40,14 @@ public class ItemLocationAdapter extends RecyclerView.Adapter<ItemLocationAdapte
     }
 
     //Sets the list of items of the adapter
-    public void setItemLocations(ArrayList<ItemLocation> itemLocations) {
-        this.itemLocations = itemLocations;
+    public void setItemLocations(ArrayList<ItemLocation> itemLocations, int itemId) {
+        another = new ArrayList<ItemLocation>();
+        dataManager = new DataManager(activity);
+        for(ItemLocation iL: itemLocations)
+          if(iL.getItem().compareTo(dataManager.getItems().get(itemId))>0)
+              another.add(iL);
+
+        this.itemLocations = another;
         notifyDataSetChanged();
     }
 
@@ -148,13 +154,18 @@ public class ItemLocationAdapter extends RecyclerView.Adapter<ItemLocationAdapte
                     editBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            ItemLocation itemLocation = itemLocations.get(getAdapterPosition());
+                            ItemLocation itemLocation = new ItemLocation();
+                            itemLocation.setItem(itemLocations.get(getAdapterPosition()).getItem());
                             itemLocation.setLocation(dataManager.getLocations().get(locationSpinner.getSelectedItemPosition()));
                             itemLocation.setPrice(Double.parseDouble(priceTxt.getText().toString()));
-                            dataManager.editItemLocation(getAdapterPosition(), itemLocation);
 
-                            itemLocations.set(getAdapterPosition(),itemLocation);
+                            for (int i = 0; i < dataManager.getItemLocations().size(); i++)
+                                if (dataManager.getItemLocations().get(i).compareTo(itemLocations.get(getAdapterPosition())) > 0)
+                                {
+                                    dataManager.editItemLocation(getAdapterPosition(), itemLocation);
+                            itemLocations.set(getAdapterPosition(), itemLocation);
                             notifyItemChanged(getAdapterPosition());
+                        }
                             Toast.makeText(activity, "Item Location Edited", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
