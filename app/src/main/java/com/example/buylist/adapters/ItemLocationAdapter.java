@@ -35,20 +35,20 @@ public class ItemLocationAdapter extends RecyclerView.Adapter<ItemLocationAdapte
     private AlertDialog dialog;
     Intent intent;
     private DataManager dataManager;
+    private int itemId;
 
     public ItemLocationAdapter() {
     }
 
     //Sets the list of items of the adapter
     public void setItemLocations(ArrayList<ItemLocation> itemLocations, int itemId) {
-        another = new ArrayList<ItemLocation>();
-        dataManager = new DataManager(activity);
-        for(ItemLocation iL: itemLocations)
-          if(iL.getItem().compareTo(dataManager.getItems().get(itemId))>0)
-              another.add(iL);
-
-        this.itemLocations = another;
+        this.itemLocations = itemLocations;
+        this.itemId=itemId;
         notifyDataSetChanged();
+    }
+
+    public ArrayList<ItemLocation> getItemLocations(){
+        return itemLocations;
     }
 
     //Sets the context/Activity of the recyclerView
@@ -162,7 +162,7 @@ public class ItemLocationAdapter extends RecyclerView.Adapter<ItemLocationAdapte
                             for (int i = 0; i < dataManager.getItemLocations().size(); i++)
                                 if (dataManager.getItemLocations().get(i).compareTo(itemLocations.get(getAdapterPosition())) > 0)
                                 {
-                                    dataManager.editItemLocation(getAdapterPosition(), itemLocation);
+                                    dataManager.editItemLocation(i, itemLocation);
                             itemLocations.set(getAdapterPosition(), itemLocation);
                             notifyItemChanged(getAdapterPosition());
                         }
@@ -193,9 +193,12 @@ public class ItemLocationAdapter extends RecyclerView.Adapter<ItemLocationAdapte
                     yesBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            dataManager.deleteItemLocation(getAdapterPosition());
-                            itemLocations.remove(getAdapterPosition());
-                            notifyItemRemoved(getAdapterPosition());
+                            for (int i = 0; i < dataManager.getItemLocations().size(); i++)
+                                if (dataManager.getItemLocations().get(i).compareTo(itemLocations.get(getAdapterPosition())) > 0) {
+                                    dataManager.deleteItemLocation(i);
+                                    itemLocations.remove(getAdapterPosition());
+                                    notifyItemRemoved(getAdapterPosition());
+                                }
                             Toast.makeText(activity, "Item Location deleted", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }

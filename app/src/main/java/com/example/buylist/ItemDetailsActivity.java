@@ -65,7 +65,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
         itemLocationAdapter = new ItemLocationAdapter();
 
         itemLocationAdapter.setActivity(this);
-        itemLocationAdapter.setItemLocations(dataManager.getItemLocations(), itemId);
+        itemLocationAdapter.setItemLocations(dataManager.getItemLocations(itemId), itemId);
 
 
 
@@ -80,9 +80,8 @@ public class ItemDetailsActivity extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                itemLocationAdapter.setItemLocations(dataManager.getItemLocations(),itemId);
+                itemLocationAdapter.notifyDataSetChanged();
                 recyclerView.setAdapter(itemLocationAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(ItemDetailsActivity.this));
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -132,7 +131,9 @@ public class ItemDetailsActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     dataManager.addItemLocation(new ItemLocation(locations.get(locationsSpinner.getSelectedItemPosition()),items.get(itemId),Double.parseDouble(price.getText().toString())));
-                    itemLocationAdapter.notifyItemInserted(dataManager.getItemLocations().size()-1);
+                    ArrayList<ItemLocation> test = dataManager.getItemLocations(itemId);
+                    itemLocationAdapter.setItemLocations(test,itemId);
+                    itemLocationAdapter.notifyItemInserted(itemLocationAdapter.getItemCount()-1);
                     Toast.makeText(ItemDetailsActivity.this, "Item Location Added", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 }

@@ -101,7 +101,7 @@ public class ItemsListActivity extends AppCompatActivity {
 
                 dataManager.addItems(new Item(nameTxt.getText().toString(),descriptionTxt.getText().toString(), dataManager.getItemTypes().get(itemPosition)));
                 Toast.makeText(ItemsListActivity.this, "Item Added", Toast.LENGTH_SHORT).show();
-                shoppingItemAdapter.notifyItemInserted(dataManager.getItems().size()-1);
+                shoppingItemAdapter.notifyItemInserted(shoppingItemAdapter.getItemCount()-1);
                 dialog.dismiss();
 
             }
