@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -87,14 +88,18 @@ public class ItemLocationAdapter extends RecyclerView.Adapter<ItemLocationAdapte
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView priceLabel,locationLabel;
         private Button editItemLoc, deleteItemLoc;
+        private CheckBox itemCheck;
 
 
         public ViewHolder(View itemView){
             super(itemView);
+            itemCheck = itemView.findViewById(R.id.itemCheck);
             priceLabel = itemView.findViewById(R.id.priceLocationLabel);
             locationLabel = itemView.findViewById(R.id.locationItemLabel);
             editItemLoc = itemView.findViewById(R.id.editItemLocBtn);
             deleteItemLoc = itemView.findViewById(R.id.deleteItemLocBtn);
+
+            itemCheck.setVisibility(View.GONE);
 
             editItemLoc.setOnClickListener(this);
             deleteItemLoc.setOnClickListener(this);

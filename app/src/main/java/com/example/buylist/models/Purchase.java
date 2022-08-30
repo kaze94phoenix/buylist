@@ -1,20 +1,28 @@
 package com.example.buylist.models;
 
-import java.util.Date;
-
 public class Purchase {
 
     private ItemLocation itemLocation;
-    private Date date;
     private int quantity;
+    private boolean purchased;
 
-    public Purchase(ItemLocation itemLocation, Date date, int quantity) {
+    public Purchase(ItemLocation itemLocation, int quantity) {
         this.itemLocation = itemLocation;
-        this.date = date;
         this.quantity = quantity;
+        purchased=false;
     }
 
+    public Purchase(){
 
+    }
+
+    public boolean isPurchased() {
+        return purchased;
+    }
+
+    public void setPurchased(boolean purchased) {
+        this.purchased = purchased;
+    }
 
     public int getQuantity() {
         return quantity;
@@ -28,24 +36,16 @@ public class Purchase {
         this.itemLocation = itemLocation;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public ItemLocation getItemLocation() {
         return itemLocation;
-    }
-
-    public Date getDate() {
-        return date;
     }
 
     @Override
     public String toString() {
         return "Purchase{" +
-                "itemLocation=" + itemLocation.toString() +
-                ", date=" + date +
+                "itemLocation=" + itemLocation +
                 ", quantity=" + quantity +
+                ", purchased=" + purchased +
                 '}';
     }
 }
