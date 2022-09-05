@@ -94,8 +94,6 @@ public class AddBuyListActivity extends AppCompatActivity {
 
                 }
 
-
-
                 buyListAdapter.setBuylist(test);
                 buylist.setAdapter(buyListAdapter);
                 buylist.setLayoutManager(new LinearLayoutManager(AddBuyListActivity.this));
