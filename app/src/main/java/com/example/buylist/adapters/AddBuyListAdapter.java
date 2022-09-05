@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class AddBuyListAdapter extends RecyclerView.Adapter<AddBuyListAdapter.ViewHolder>{
 
     ArrayList<ItemLocation> itemLocations;
+    public ArrayList<ItemLocation> aux;
 
     public AddBuyListAdapter(){
 
@@ -25,6 +26,7 @@ public class AddBuyListAdapter extends RecyclerView.Adapter<AddBuyListAdapter.Vi
 
     public void setItemLocations(ArrayList<ItemLocation> itemLocations) {
         this.itemLocations = itemLocations;
+        aux = new ArrayList<>();
     }
 
     @NonNull
@@ -39,6 +41,16 @@ public class AddBuyListAdapter extends RecyclerView.Adapter<AddBuyListAdapter.Vi
         holder.itemName.setText(itemLocations.get(position).getItem().getName());
         holder.locationName.setText(itemLocations.get(position).getLocation().getName());
         holder.price.setText(String.valueOf(itemLocations.get(position).getPrice()));
+        holder.isSelected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(holder.isSelected.isChecked())
+                    aux.add(itemLocations.get(holder.getAdapterPosition()));
+                else
+                    aux.remove(itemLocations.get(holder.getAdapterPosition()));
+            }
+        });
+
     }
 
     @Override
@@ -57,6 +69,7 @@ public class AddBuyListAdapter extends RecyclerView.Adapter<AddBuyListAdapter.Vi
             itemName = itemView.findViewById(R.id.itemBuylist);
             locationName = itemView.findViewById(R.id.locationBuylist);
             price = itemView.findViewById(R.id.priceBuylist);
+            isSelected = itemView.findViewById(R.id.checkBoxBuylist);
 
         }
     }
