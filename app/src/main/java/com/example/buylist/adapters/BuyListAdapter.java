@@ -3,6 +3,7 @@ package com.example.buylist.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,7 +19,7 @@ public class BuyListAdapter extends RecyclerView.Adapter<BuyListAdapter.ViewHold
     ArrayList<Purchase> buylist;
 
     public BuyListAdapter(){
-
+        buylist = new ArrayList<>();
     }
 
     @NonNull
@@ -30,7 +31,10 @@ public class BuyListAdapter extends RecyclerView.Adapter<BuyListAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        holder.item.setText(buylist.get(position).getItemLocation().getItem().getName());
+        holder.location.setText(buylist.get(position).getItemLocation().getLocation().getName());
+        holder.price.setText(String.valueOf(buylist.get(position).getItemLocation().getPrice()));
+        holder.quantity.setText(buylist.get(position).getQuantity()+" Unit(s)");
     }
 
     @Override
@@ -46,8 +50,15 @@ public class BuyListAdapter extends RecyclerView.Adapter<BuyListAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
+        TextView item, location, price,quantity;
+
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            item = itemView.findViewById(R.id.itemBuylistName);
+            location = itemView.findViewById(R.id.locationBuylistName);
+            price = itemView.findViewById(R.id.priceBuylistName);
+            quantity = itemView.findViewById(R.id.qttyBuylistName);
         }
     }
 

@@ -8,7 +8,10 @@ public class Purchase {
 
     public Purchase(ItemLocation itemLocation, int quantity) {
         this.itemLocation = itemLocation;
-        this.quantity = quantity;
+        if(quantity<1)
+            this.quantity=1;
+        else
+            this.quantity = quantity;
         purchased=false;
     }
 
