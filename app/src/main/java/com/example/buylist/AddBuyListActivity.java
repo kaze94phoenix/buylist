@@ -7,15 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import com.example.buylist.adapters.AddBuyListAdapter;
 import com.example.buylist.adapters.BuyListAdapter;
 import com.example.buylist.models.DataManager;
-import com.example.buylist.models.ItemLocation;
 import com.example.buylist.models.Purchase;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -26,7 +23,7 @@ public class AddBuyListActivity extends AppCompatActivity {
     private RecyclerView buylist;
     private DataManager dataManager;
     private BuyListAdapter buyListAdapter;
-    private ArrayList<Purchase> test;
+    private ArrayList<Purchase> purchases;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +33,10 @@ public class AddBuyListActivity extends AppCompatActivity {
         buyListAdapter = new BuyListAdapter();
 
 
-        test = new ArrayList<>();
+        purchases = new ArrayList<>();
 
         buylist = findViewById(R.id.buylist);
-        buyListAdapter.setBuylist(test);
+        buyListAdapter.setBuylist(purchases);
         buylist.setAdapter(buyListAdapter);
         buylist.setLayoutManager(new LinearLayoutManager(AddBuyListActivity.this));
 
@@ -72,29 +69,29 @@ public class AddBuyListActivity extends AppCompatActivity {
             public void onClick(View view) {
                // test = new ArrayList<>();
 
-                if(test.isEmpty())
-                    for(ItemLocation a: listAdapter.aux)
-                        test.add(new Purchase(a,1));
+                if(purchases.isEmpty())
+                    for(Purchase p: listAdapter.aux)
+                        purchases.add(p);
 
                     else {
 
                     for (int i = 0; i < listAdapter.aux.size(); i++) {
                         boolean found = false;
-                        for (int j = 0; j < test.size(); j++)
-                            if (test.get(j).getItemLocation().compareTo(listAdapter.aux.get(i)) > 0) {
-                                test.get(j).setQuantity(test.get(j).getQuantity() + 1);
+                        for (int j = 0; j < purchases.size(); j++)
+                            if (purchases.get(j).getItemLocation().compareTo(listAdapter.aux.get(i).getItemLocation()) > 0) {
+                                purchases.get(j).setQuantity(purchases.get(j).getQuantity() + listAdapter.aux.get(i).getQuantity());
                                 found=true;
                             }
 
                         if(!found)
-                            test.add(new Purchase(listAdapter.aux.get(i),1));
+                            purchases.add(listAdapter.aux.get(i));
 
 
                     }
 
                 }
 
-                buyListAdapter.setBuylist(test);
+                buyListAdapter.setBuylist(purchases);
                 buylist.setAdapter(buyListAdapter);
                 buylist.setLayoutManager(new LinearLayoutManager(AddBuyListActivity.this));
                 dialog.dismiss();

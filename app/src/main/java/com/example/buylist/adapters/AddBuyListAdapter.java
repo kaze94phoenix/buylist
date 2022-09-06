@@ -12,13 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.buylist.R;
 import com.example.buylist.models.Item;
 import com.example.buylist.models.ItemLocation;
+import com.example.buylist.models.Purchase;
 
 import java.util.ArrayList;
 
 public class AddBuyListAdapter extends RecyclerView.Adapter<AddBuyListAdapter.ViewHolder>{
 
     ArrayList<ItemLocation> itemLocations;
-    public ArrayList<ItemLocation> aux;
+    public ArrayList<Purchase> aux;
 
     public AddBuyListAdapter(){
 
@@ -41,13 +42,17 @@ public class AddBuyListAdapter extends RecyclerView.Adapter<AddBuyListAdapter.Vi
         holder.itemName.setText(itemLocations.get(position).getItem().getName());
         holder.locationName.setText(itemLocations.get(position).getLocation().getName());
         holder.price.setText(String.valueOf(itemLocations.get(position).getPrice()));
+        holder.quantity.setText("1");
         holder.isSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(holder.isSelected.isChecked())
-                    aux.add(itemLocations.get(holder.getAdapterPosition()));
+                    aux.add(new Purchase(itemLocations.get(holder.getAdapterPosition()),Integer.parseInt(holder.quantity.getText().toString())));
                 else
-                    aux.remove(itemLocations.get(holder.getAdapterPosition()));
+                    for(Purchase p: aux)
+                        if(p.getItemLocation().compareTo(itemLocations.get(holder.getAdapterPosition()))>0)
+                            aux.remove(p);
+
             }
         });
 
@@ -60,7 +65,7 @@ public class AddBuyListAdapter extends RecyclerView.Adapter<AddBuyListAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView itemName, locationName, price;
+        TextView itemName, locationName, price, quantity;
         CheckBox isSelected;
 
         public ViewHolder(View itemView){
@@ -69,6 +74,7 @@ public class AddBuyListAdapter extends RecyclerView.Adapter<AddBuyListAdapter.Vi
             itemName = itemView.findViewById(R.id.itemBuylist);
             locationName = itemView.findViewById(R.id.locationBuylist);
             price = itemView.findViewById(R.id.priceBuylist);
+            quantity = itemView.findViewById(R.id.qttyAddBuylistText);
             isSelected = itemView.findViewById(R.id.checkBoxBuylist);
 
         }
