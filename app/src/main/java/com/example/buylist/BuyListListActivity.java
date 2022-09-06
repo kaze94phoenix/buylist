@@ -31,6 +31,7 @@ public class BuyListListActivity extends AppCompatActivity {
         buylistList = findViewById(R.id.buyListListRV);
         //addBuylist = findViewById(R.id.addBuylistBtn);
 
+        buyListListAdapter.setActivity(this);
         buyListListAdapter.setBuyLists(dataManager.getBuyLists());
 
         buylistList.setAdapter(buyListListAdapter);

@@ -169,5 +169,11 @@ public class DataManager {
         editor.commit();
     }
 
+    public void editBuyList(int position, BuyList buyList){
+        buyLists.set(position,buyList);
+        editor.putString(BUYLISTS,gson.toJson(buyLists));
+        editor.commit();
+    }
+
 
 }
