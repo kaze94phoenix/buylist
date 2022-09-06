@@ -3,6 +3,7 @@ package com.example.buylist.models;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.bumptech.glide.load.model.ByteBufferEncoder;
 import com.example.buylist.models.ItemType;
 import com.example.buylist.models.Item;
 import com.example.buylist.models.Location;
@@ -21,6 +22,7 @@ public class DataManager {
     private static final String ITEMS = "items";
     private static final String LOCATIONS = "locations";
     private static final String ITEM_LOCATIONS = "item_locations";
+    private static final String BUYLISTS = "buylists";
 
     private SharedPreferences sharedPreference;
     private SharedPreferences.Editor editor;
@@ -31,7 +33,7 @@ public class DataManager {
     private ArrayList<Item> items;
     private ArrayList<Location> locations;
     private ArrayList<ItemLocation> itemLocations;
-
+    private ArrayList<BuyList> buyLists;
 
     public DataManager(Context context) {
         sharedPreference = context.getSharedPreferences("shopping_db",Context.MODE_PRIVATE);
@@ -59,6 +61,11 @@ public class DataManager {
         itemLocations = gson.fromJson(sharedPreference.getString(ITEM_LOCATIONS,null),typeItemLocation);
         if(itemLocations==null)
             itemLocations = new ArrayList<ItemLocation>();
+
+        Type typeBuylist = new TypeToken<ArrayList<BuyList>>(){}.getType();
+        buyLists = gson.fromJson(sharedPreference.getString(BUYLISTS,null),typeBuylist);
+        if(buyLists ==null)
+            buyLists = new ArrayList<BuyList>();
 
 
     }
@@ -147,6 +154,18 @@ public class DataManager {
     public void deleteItemLocation(int position){
         itemLocations.remove(position);
         editor.putString(ITEM_LOCATIONS,gson.toJson(itemLocations));
+        editor.commit();
+    }
+
+
+    // BuyList
+    public ArrayList<BuyList>  getBuyLists(){
+        return buyLists;
+    }
+
+    public void addBuyList(BuyList buyList){
+        buyLists.add(buyList);
+        editor.putString(BUYLISTS,gson.toJson(buyLists));
         editor.commit();
     }
 

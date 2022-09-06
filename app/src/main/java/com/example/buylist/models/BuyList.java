@@ -7,6 +7,7 @@ public class BuyList {
 
     private ArrayList<Purchase> purchases;
     private Date date;
+    private String name;
 
     public BuyList(){
 
@@ -20,6 +21,19 @@ public class BuyList {
             purchases = new ArrayList<Purchase>();
     }
 
+    public BuyList(String name, Date date, ArrayList<Purchase> purchases) {
+        this.purchases = purchases;
+        this.date = date;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public ArrayList<Purchase> getPurchases() {
         return purchases;

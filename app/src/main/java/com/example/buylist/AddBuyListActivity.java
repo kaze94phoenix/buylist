@@ -5,16 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.buylist.adapters.AddBuyListAdapter;
 import com.example.buylist.adapters.BuyListAdapter;
+import com.example.buylist.models.BuyList;
 import com.example.buylist.models.DataManager;
 import com.example.buylist.models.Purchase;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class AddBuyListActivity extends AppCompatActivity {
 
@@ -24,6 +28,7 @@ public class AddBuyListActivity extends AppCompatActivity {
     private DataManager dataManager;
     private BuyListAdapter buyListAdapter;
     private ArrayList<Purchase> purchases;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +41,15 @@ public class AddBuyListActivity extends AppCompatActivity {
         purchases = new ArrayList<>();
 
         buylist = findViewById(R.id.buylist);
-        buyListAdapter.setBuylist(purchases);
-        buylist.setAdapter(buyListAdapter);
-        buylist.setLayoutManager(new LinearLayoutManager(AddBuyListActivity.this));
+        //buyListAdapter.setBuylist(purchases);
+       // buylist.setAdapter(buyListAdapter);
+        //buylist.setLayoutManager(new LinearLayoutManager(AddBuyListActivity.this));
 
     }
 
 
 
-    public void addItem(View view){
+    public void addBuyListItems(View view){
 
         dialogBuilder = new AlertDialog.Builder(this);
         final View addItemView = getLayoutInflater().inflate(R.layout.add_item_buylist,null);
@@ -108,6 +113,21 @@ public class AddBuyListActivity extends AppCompatActivity {
 
 
     }
+
+
+    public void SaveBuyListItems(View view){
+        intent = new Intent(AddBuyListActivity.this,BuyListListActivity.class);
+        Date date = new Date(Calendar.YEAR,Calendar.MONTH,Calendar.DATE);
+
+        dataManager.addBuyList(new BuyList("BuyList #"+dataManager.getBuyLists().size(),date,purchases));
+
+        startActivity(intent);
+
+
+    }
+
+
+
 
 
 }
