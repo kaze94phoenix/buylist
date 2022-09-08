@@ -3,6 +3,7 @@ package com.example.buylist.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -34,7 +35,7 @@ public class BuyListAdapter extends RecyclerView.Adapter<BuyListAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.item.setText(buylist.get(position).getItemLocation().getItem().getName());
         holder.location.setText(buylist.get(position).getItemLocation().getLocation().getName());
-        holder.price.setText(String.valueOf(buylist.get(position).getItemLocation().getPrice()));
+        holder.price.setText(String.valueOf(buylist.get(position).getItemLocation().getPrice()*buylist.get(position).getQuantity()));
         holder.quantity.setText(buylist.get(position).getQuantity()+" Unit(s)");
     }
 
@@ -49,9 +50,10 @@ public class BuyListAdapter extends RecyclerView.Adapter<BuyListAdapter.ViewHold
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView item, location, price,quantity;
+        TextView item, location, price,quantity,quantityEdit;
+        Button edit,delete;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -60,6 +62,38 @@ public class BuyListAdapter extends RecyclerView.Adapter<BuyListAdapter.ViewHold
             location = itemView.findViewById(R.id.locationBuylistName);
             price = itemView.findViewById(R.id.priceBuylistName);
             quantity = itemView.findViewById(R.id.qttyBuylistName);
+            quantityEdit = itemView.findViewById(R.id.qttyBuylistEdit);
+            edit = itemView.findViewById(R.id.changeQttyBuylist);
+            delete = itemView.findViewById(R.id.removeBuylist);
+
+            edit.setOnClickListener(this);
+            delete.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch(view.getId()){
+                case (R.id.changeQttyBuylist):
+                    if(quantity.getVisibility()==View.VISIBLE){
+                        quantity.setVisibility(View.INVISIBLE);
+                        quantityEdit.setVisibility(View.VISIBLE);
+                        quantityEdit.setText(String.valueOf(buylist.get(getAdapterPosition()).getQuantity()));
+                    } else {
+                        buylist.get(getAdapterPosition()).setQuantity(Integer.parseInt(quantityEdit.getText().toString()));
+                        notifyItemChanged(getAdapterPosition());
+                        quantity.setVisibility(View.VISIBLE);
+                        quantityEdit.setVisibility(View.INVISIBLE);
+                    }
+                    break;
+
+                case(R.id.removeBuylist):
+                    buylist.remove(getAdapterPosition());
+                    notifyItemRemoved(getAdapterPosition());
+                    break;
+
+            }
+
         }
     }
 

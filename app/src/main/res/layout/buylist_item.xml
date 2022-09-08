@@ -37,7 +37,18 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="88dp"
         android:text="Quantity"
-        app:layout_constraintEnd_toStartOf="@+id/changePriceBuylist"
+        app:layout_constraintEnd_toStartOf="@+id/changeQttyBuylist"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:visibility="invisible"
+        android:id="@+id/qttyBuylistEdit"
+        android:layout_width="65dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="80dp"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/changeQttyBuylist"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -53,7 +64,7 @@
         app:layout_constraintVertical_bias="0.676" />
 
     <Button
-        android:id="@+id/changePriceBuylist"
+        android:id="@+id/changeQttyBuylist"
         android:layout_width="42dp"
         android:layout_height="51dp"
         android:layout_marginEnd="40dp"

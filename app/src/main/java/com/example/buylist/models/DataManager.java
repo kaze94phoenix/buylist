@@ -175,5 +175,10 @@ public class DataManager {
         editor.commit();
     }
 
+    public void deleteBuyList(int position){
+        buyLists.remove(position);
+        editor.putString(BUYLISTS,gson.toJson(buyLists));
+        editor.commit();
+    }
 
 }
