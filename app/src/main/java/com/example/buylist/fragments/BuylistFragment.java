@@ -105,7 +105,6 @@ public class BuylistFragment extends Fragment {
 
     public void goToAddBuyList(){
         intent = new Intent(getActivity(), AddBuyListActivity.class);
-        getActivity().finish();
         startActivity(intent);
     }
 }
