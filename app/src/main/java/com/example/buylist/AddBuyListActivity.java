@@ -116,11 +116,11 @@ public class AddBuyListActivity extends AppCompatActivity {
 
 
     public void SaveBuyListItems(View view){
-        intent = new Intent(AddBuyListActivity.this,BuyListListActivity.class);
+        intent = new Intent(AddBuyListActivity.this,MainActivity.class);
         Date date = new Date(Calendar.YEAR,Calendar.MONTH,Calendar.DATE);
 
         dataManager.addBuyList(new BuyList("BuyList #"+dataManager.getBuyLists().size(),date,purchases));
-
+        finish();
         startActivity(intent);
 
 
