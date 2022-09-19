@@ -31,19 +31,7 @@
         android:layout_height="match_parent"
         android:id="@+id/fragmentsContainer"
         />
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabMain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPagerMain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
 
 
 </LinearLayout>
