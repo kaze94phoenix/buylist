@@ -47,6 +47,10 @@ public class AddBuyListActivity extends AppCompatActivity {
         //buylist.setLayoutManager(new LinearLayoutManager(AddBuyListActivity.this));
 
     }
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
 
 
 

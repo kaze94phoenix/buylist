@@ -18,12 +18,10 @@
         <activity
             android:name=".AddBuyListActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity"
             />
         <activity
             android:name=".ItemDetailsActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
             />
         <activity
             android:name=".EditItemActivity"
@@ -40,8 +38,8 @@
         <activity
             android:name=".AddItemTypeActivity"
             android:exported="true"
-            android:label="@string/title_activity_add_type_item"
-            android:theme="@style/Theme.BuyList.NoActionBar" />
+            android:label="Add Item Type"
+            />
         <activity
             android:name=".MainActivity"
             android:exported="true"

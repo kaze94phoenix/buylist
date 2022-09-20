@@ -91,6 +91,11 @@ public class ItemDetailsActivity extends AppCompatActivity {
 
     }
 
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
+
     public void addItemLocation(View view) {
 
         dialogBuilder = new AlertDialog.Builder(this);

@@ -1,5 +1,6 @@
 package com.example.buylist.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -17,7 +18,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.buylist.AddItemTypeActivity;
 import com.example.buylist.ItemsListActivity;
+import com.example.buylist.MainActivity;
 import com.example.buylist.R;
 import com.example.buylist.adapters.ShoppingItemAdapter;
 import com.example.buylist.models.DataManager;
@@ -41,6 +44,7 @@ public class ProductsFragment extends Fragment implements View.OnClickListener {
     DataManager dataManager;
     ShoppingItemAdapter shoppingItemAdapter;
     FloatingActionButton actionButton;
+    Intent intent;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -147,6 +151,7 @@ public class ProductsFragment extends Fragment implements View.OnClickListener {
         EditText descriptionTxt = addItemPopoutView.findViewById(R.id.itemDescriptionTxt);
         Button saveBtn = addItemPopoutView.findViewById(R.id.btnSaveItem);
         Button cancelBtn = addItemPopoutView.findViewById(R.id.btnCancelItem);
+        Button addItemType = addItemPopoutView.findViewById(R.id.goAddItemType);
         int itemPosition = spinner.getSelectedItemPosition();
 
         ///////////////////////
@@ -174,6 +179,15 @@ public class ProductsFragment extends Fragment implements View.OnClickListener {
                 dialog.dismiss();
             }
         });
+
+        addItemType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(getActivity(), AddItemTypeActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
 
 
 

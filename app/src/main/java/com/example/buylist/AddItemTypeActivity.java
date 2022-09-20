@@ -24,6 +24,7 @@ public class AddItemTypeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_type_item);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         dataManager = new DataManager(this);
         another = new ArrayList<>();
@@ -43,6 +44,11 @@ public class AddItemTypeActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
 
