@@ -36,6 +36,8 @@ public class EditBuyListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_buy_list);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         dataManager = new DataManager(this);
         buyListAdapter = new BuyListAdapter();
 
@@ -51,6 +53,11 @@ public class EditBuyListActivity extends AppCompatActivity {
         buylist.setAdapter(buyListAdapter);
         buylist.setLayoutManager(new LinearLayoutManager(EditBuyListActivity.this));
 
+    }
+
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
 
