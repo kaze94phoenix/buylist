@@ -24,7 +24,7 @@ import com.example.buylist.models.Location;
 
 import java.util.ArrayList;
 
-public class ItemLocationAdapter extends RecyclerView.Adapter<ItemLocationAdapter.ViewHolder> {
+public class LocationItemAdapter extends RecyclerView.Adapter<LocationItemAdapter.ViewHolder> {
     private ArrayList<ItemLocation> itemLocations, another;
     //ID of each item used to navigate to or manipulate each item
     public static final String EXTRA_ITEM_ID = "item_id";
@@ -35,7 +35,7 @@ public class ItemLocationAdapter extends RecyclerView.Adapter<ItemLocationAdapte
     Intent intent;
     private DataManager dataManager;
 
-    public ItemLocationAdapter() {
+    public LocationItemAdapter() {
     }
 
     //Sets the list of items of the adapter
@@ -60,18 +60,18 @@ public class ItemLocationAdapter extends RecyclerView.Adapter<ItemLocationAdapte
 
     @NonNull
     @Override
-    public ItemLocationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public LocationItemAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //sets and inflates the view with the viewholder
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.simple_item_location,parent,false);
-        ItemLocationAdapter.ViewHolder holder = new ItemLocationAdapter.ViewHolder(view);
+        LocationItemAdapter.ViewHolder holder = new LocationItemAdapter.ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemLocationAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull LocationItemAdapter.ViewHolder holder, int position) {
         //binds the attributes of the model to the viewHolder
         holder.priceLabel.setText(String.valueOf(itemLocations.get(position).getPrice()));
-        holder.locationLabel.setText(itemLocations.get(position).getLocation().getName());
+        holder.itemLabel.setText(itemLocations.get(position).getItem().getName());
     }
 
 
@@ -82,7 +82,7 @@ public class ItemLocationAdapter extends RecyclerView.Adapter<ItemLocationAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView priceLabel,locationLabel;
+        private TextView priceLabel, itemLabel;
         private Button editItemLoc, deleteItemLoc;
         private CheckBox itemCheck;
 
@@ -91,19 +91,25 @@ public class ItemLocationAdapter extends RecyclerView.Adapter<ItemLocationAdapte
             super(itemView);
             itemCheck = itemView.findViewById(R.id.itemCheck);
             priceLabel = itemView.findViewById(R.id.priceLocationLabel);
-            locationLabel = itemView.findViewById(R.id.locationItemLabel);
+            itemLabel = itemView.findViewById(R.id.locationItemLabel);
             editItemLoc = itemView.findViewById(R.id.editItemLocBtn);
             deleteItemLoc = itemView.findViewById(R.id.deleteItemLocBtn);
 
             itemCheck.setVisibility(View.GONE);
 
+            editItemLoc.setVisibility(View.GONE);
+            deleteItemLoc.setVisibility(View.GONE);
+
             editItemLoc.setOnClickListener(this);
             deleteItemLoc.setOnClickListener(this);
+
+
         }
 
 
         @Override
         public void onClick(View view) {
+            //TODO: Implement this after makind the update/delete cascade
             EditText priceTxt;
             Spinner locationSpinner;
             ArrayList<String> locationsNames = new ArrayList<>();

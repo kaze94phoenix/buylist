@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BuyList">
         <activity
+            android:name=".LocationDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditBuyListActivity"
             android:exported="false" />
         <activity
@@ -17,12 +20,10 @@
             android:exported="true" />
         <activity
             android:name=".AddBuyListActivity"
-            android:exported="true"
-            />
+            android:exported="true" />
         <activity
             android:name=".ItemDetailsActivity"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".EditItemActivity"
             android:exported="false" />
@@ -38,8 +39,7 @@
         <activity
             android:name=".AddItemTypeActivity"
             android:exported="true"
-            android:label="Add Item Type"
-            />
+            android:label="Add Item Type" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -139,6 +139,14 @@ public class DataManager {
         return another;
     }
 
+    public ArrayList<ItemLocation> getLocationItems(int locationId) {
+        ArrayList<ItemLocation> another = new ArrayList<ItemLocation>();
+        for(ItemLocation aux: itemLocations)
+            if(getLocations().get(locationId).compareTo(aux.getLocation())>0)
+                another.add(aux);
+        return another;
+    }
+
     public void addItemLocation(ItemLocation itemLocation){
         itemLocations.add(itemLocation);
         editor.putString(ITEM_LOCATIONS,gson.toJson(itemLocations));

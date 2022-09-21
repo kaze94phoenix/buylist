@@ -21,11 +21,9 @@ import com.example.buylist.adapters.ShoppingItemAdapter;
 import com.example.buylist.models.DataManager;
 import com.example.buylist.models.Item;
 import com.example.buylist.models.ItemLocation;
-import com.example.buylist.models.ItemType;
 import com.example.buylist.models.Location;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class ItemDetailsActivity extends AppCompatActivity {
     private TextView itemName, itemDescription, itemPrice, itemType;
@@ -66,7 +64,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
         itemLocationAdapter = new ItemLocationAdapter();
 
         itemLocationAdapter.setActivity(this);
-        itemLocationAdapter.setItemLocations(dataManager.getItemLocations(itemId), itemId);
+        itemLocationAdapter.setItemLocations(dataManager.getItemLocations(itemId));
 
 
 
@@ -138,7 +136,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     dataManager.addItemLocation(new ItemLocation(locations.get(locationsSpinner.getSelectedItemPosition()),items.get(itemId),Double.parseDouble(price.getText().toString())));
                     ArrayList<ItemLocation> test = dataManager.getItemLocations(itemId);
-                    itemLocationAdapter.setItemLocations(test,itemId);
+                    itemLocationAdapter.setItemLocations(test);
                     itemLocationAdapter.notifyItemInserted(itemLocationAdapter.getItemCount()-1);
                     Toast.makeText(ItemDetailsActivity.this, "Item Location Added", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();

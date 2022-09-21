@@ -11,10 +11,12 @@
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/activity_edit_item.xml" value="0.35885416666666664" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/activity_item_details.xml" value="0.3247422680412371" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/activity_items_list.xml" value="0.33" />
+        <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/activity_location_details.xml" value="0.25" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/add_item_buylist.xml" value="0.35885416666666664" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/add_item_location_popup.xml" value="0.35885416666666664" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/add_item_popup.xml" value="0.35885416666666664" />
+        <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/add_location_popup.xml" value="0.2530737704918033" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/buylist.xml" value="0.35885416666666664" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/buylist_item.xml" value="0.35885416666666664" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/buylist_item_location.xml" value="0.35885416666666664" />
@@ -24,13 +26,14 @@
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/edit_item_popup.xml" value="0.35885416666666664" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/fragment_buylist.xml" value="0.25" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/fragment_lists_n_stats.xml" value="0.269140625" />
-        <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/fragment_locations.xml" value="0.257172131147541" />
+        <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/fragment_locations.xml" value="0.1" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/fragment_products.xml" value="0.257172131147541" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/fragment_products_n_locals.xml" value="0.269140625" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/fragment_statistics.xml" value="0.35885416666666664" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/nav_header.xml" value="0.1" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/simple_item_location.xml" value="0.33" />
-        <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/simple_shopping_item.xml" value="0.67" />
+        <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/simple_location_item.xml" value="0.33" />
+        <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/layout/simple_shopping_item.xml" value="0.33" />
         <entry key="..\:/Users/Atarimo/AndroidStudioProjects/BuyList/app/src/main/res/menu/drawer_menu.xml" value="0.33" />
       </map>
     </option>
