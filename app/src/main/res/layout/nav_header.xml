@@ -13,6 +13,7 @@
         android:src="@mipmap/ic_launcher_round"
         android:paddingBottom="16dp"
         android:paddingTop="24dp"
+        android:layout_marginStart="@dimen/fab_margin"
         />
 
     <TextView
@@ -20,6 +21,7 @@
         android:layout_height="wrap_content"
         android:text="Teste"
         android:paddingBottom="24dp"
+        android:layout_marginStart="@dimen/fab_margin"
         />
 
 </LinearLayout>

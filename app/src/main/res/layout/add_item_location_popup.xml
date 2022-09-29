@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
@@ -10,83 +10,76 @@
         android:id="@+id/itemPriceLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="64dp"
         android:text="Price"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintHorizontal_bias="0.179"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="50dp"
+        />
+
 
     <EditText
         android:id="@+id/itemPriceTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_below="@+id/itemPriceLabel"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="37dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.288"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemPriceLabel" />
-
-    <Button
-        android:id="@+id/btnSaveItemLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Save"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.173"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationSpinner"
-        />
-
-    <Button
-        android:id="@+id/btnCancelItemLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="16dp"
-        android:text="Cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.609"
-        app:layout_constraintStart_toEndOf="@+id/btnSaveItemLocation"
-        app:layout_constraintTop_toBottomOf="@+id/locationSpinner" />
-
-    <Spinner
-        android:id="@+id/locationSpinner"
-        android:layout_width="186dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationLabel" />
+        android:inputType="numberDecimal" />
 
     <TextView
         android:id="@+id/locationLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Location"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.129"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemPriceTxt" />
+        android:layout_below="@id/itemPriceTxt"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="34dp"
+        android:text="Location" />
+
+    <Spinner
+        android:id="@+id/locationSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/locationLabel"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+
+        />
 
     <Button
         android:id="@+id/goAddLocation"
         android:layout_width="43dp"
         android:layout_height="38dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="32dp"
+        android:layout_below="@id/locationLabel"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="264dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="50dp"
         android:onClick="goToAddItemType"
-        android:text="+"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/locationSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/locationLabel" />
+        android:text="+" />
+
+    <Button
+        android:id="@+id/btnSaveItemLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/locationSpinner"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="78dp"
+        android:text="Save" />
+
+    <Button
+        android:id="@+id/btnCancelItemLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/locationSpinner"
+        android:layout_marginTop="22dp"
+        android:layout_marginBottom="16dp"
+        android:layout_toEndOf="@id/btnSaveItemLocation"
+        android:text="Cancel" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
