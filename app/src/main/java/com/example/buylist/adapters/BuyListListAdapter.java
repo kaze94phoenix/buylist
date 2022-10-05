@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -67,7 +68,7 @@ public class BuyListListAdapter extends RecyclerView.Adapter<BuyListListAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView name, date;
-        ConstraintLayout element;
+        RelativeLayout element;
         Button deleteBtn;
         AlertDialog.Builder dialogBuilder;
         AlertDialog dialog;
