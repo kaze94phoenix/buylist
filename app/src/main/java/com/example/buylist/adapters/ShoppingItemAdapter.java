@@ -8,13 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buylist.AddItemTypeActivity;
@@ -68,7 +68,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //binds the attributes of the model to the viewHolder
         holder.txtItemName.setText(items.get(position).getName());
-        holder.txtItemId.setText(String.valueOf(position));
+
     }
 
 
@@ -81,23 +81,22 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     //Inner Class ViewHolder that takes the View Items to be used on the adapter
     //implements on click listener
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtItemName, txtItemAvgPrice, txtItemId;
+        private TextView txtItemName, txtItemAvgPrice;
         private Button editBtn, deleteBtn;
-        private ConstraintLayout constraintLayout;
+        private RelativeLayout relativeLayout;
       //  private ArrayList<Item> items;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
        //     this.items=items;
-            constraintLayout = itemView.findViewById(R.id.simpleShoppingItem);
+            relativeLayout = itemView.findViewById(R.id.simpleShoppingItem);
             txtItemName=itemView.findViewById(R.id.itemName);
             txtItemAvgPrice=itemView.findViewById(R.id.itemAvgPrice);
-            txtItemId = itemView.findViewById(R.id.itemId);
             editBtn = itemView.findViewById(R.id.btnEditItem);
             deleteBtn = itemView.findViewById(R.id.btnDeleteItem);
             DataManager dataManager = new DataManager(activity);
 
-            constraintLayout.setOnClickListener(new View.OnClickListener() {
+            relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     intent = new Intent(activity, ItemDetailsActivity.class);
