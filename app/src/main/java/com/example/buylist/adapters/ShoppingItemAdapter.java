@@ -17,6 +17,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.buylist.AddItemTypeActivity;
 import com.example.buylist.ItemDetailsActivity;
 import com.example.buylist.R;
 import com.example.buylist.models.DataManager;
@@ -110,13 +111,14 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                 @Override
                 public void onClick(View view) {
                     dialogBuilder = new AlertDialog.Builder(activity);
-                    final View editItemPopoutView = activity.getLayoutInflater().inflate(R.layout.edit_item_popup,null);
+                    final View editItemPopoutView = activity.getLayoutInflater().inflate(R.layout.add_item_popup,null);
                     /////////////
                     EditText nameTxt = editItemPopoutView.findViewById(R.id.itemNameTxt);
                     EditText descriptionTxt = editItemPopoutView.findViewById(R.id.itemDescriptionTxt);
                     Spinner spinner = editItemPopoutView.findViewById(R.id.itemTypeSpinner);
                     Button editBtn = editItemPopoutView.findViewById(R.id.btnSaveItem);
                     Button cancelBtn = editItemPopoutView.findViewById(R.id.btnCancelItem);
+                    Button addItemType = editItemPopoutView.findViewById(R.id.goAddItemType);
                     ArrayList<String> another = new ArrayList<String>();
 
 
@@ -168,6 +170,14 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                         @Override
                         public void onClick(View view) {
                             dialog.dismiss();
+                        }
+                    });
+
+                    addItemType.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            intent = new Intent(activity, AddItemTypeActivity.class);
+                            activity.startActivity(intent);
                         }
                     });
 
