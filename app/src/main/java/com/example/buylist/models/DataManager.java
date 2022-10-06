@@ -189,4 +189,12 @@ public class DataManager {
         editor.commit();
     }
 
+    public Double avgPrice(int position){
+        Double SUM=0.0;
+        for(ItemLocation iL: getItemLocations(position))
+            SUM+=iL.getPrice();
+
+        return SUM/getItemLocations(position).size();
+    }
+
 }

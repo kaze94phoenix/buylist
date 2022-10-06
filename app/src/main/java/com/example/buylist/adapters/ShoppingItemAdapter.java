@@ -68,7 +68,8 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //binds the attributes of the model to the viewHolder
         holder.txtItemName.setText(items.get(position).getName());
-
+        DataManager dataManager = new DataManager(activity);
+        holder.txtItemAvgPrice.setText(String.valueOf(dataManager.avgPrice(position)));
     }
 
 
