@@ -6,21 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.buylist.ItemDetailsActivity;
 import com.example.buylist.LocationDetailsActivity;
 import com.example.buylist.R;
-import com.example.buylist.models.Item;
 import com.example.buylist.models.Location;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class ShoppingLocationAdapter extends RecyclerView.Adapter<ShoppingLocationAdapter.ViewHolder> {
 
@@ -62,18 +60,18 @@ public class ShoppingLocationAdapter extends RecyclerView.Adapter<ShoppingLocati
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             Button editLocation, deleteLocation;
             TextView locationName;
-            ConstraintLayout constraintLayout;
+            RelativeLayout relativeLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             locationName = itemView.findViewById(R.id.locationName);
             editLocation = itemView.findViewById(R.id.btnEditLocation);
             deleteLocation = itemView.findViewById(R.id.btnDeleteLocation);
-            constraintLayout = itemView.findViewById(R.id.simpleShoppingLocation);
+            relativeLayout = itemView.findViewById(R.id.simpleShoppingLocation);
 
             editLocation.setOnClickListener(this);
             deleteLocation.setOnClickListener(this);
-            constraintLayout.setOnClickListener(this);
+            relativeLayout.setOnClickListener(this);
 
         }
 
