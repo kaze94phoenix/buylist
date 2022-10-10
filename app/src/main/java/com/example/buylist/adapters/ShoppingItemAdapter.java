@@ -180,13 +180,6 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                             activity.startActivity(intent);
                         }
                     });
-
-
-
-
-            /*Intent intent = new Intent(context,EditItemActivity.class);
-            intent.putExtra(EXTRA_ITEM_ID,getAdapterPosition());
-            context.startActivity(intent);*/
                 }
             });
 

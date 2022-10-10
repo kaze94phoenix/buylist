@@ -25,9 +25,6 @@
             android:name=".ItemDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".EditItemActivity"
-            android:exported="false" />
-        <activity
             android:name=".ItemsListActivity"
             android:exported="true" />
         <activity

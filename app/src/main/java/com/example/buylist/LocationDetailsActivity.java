@@ -112,9 +112,12 @@ public class LocationDetailsActivity extends AppCompatActivity {
         }
 
         EditText price = addItemLocationView.findViewById(R.id.itemPriceTxt);
+        TextView itemsLabel = addItemLocationView.findViewById(R.id.locationLabel);
         Button cancelBtn = addItemLocationView.findViewById(R.id.btnCancelItemLocation);
         Button saveBtn = addItemLocationView.findViewById(R.id.btnSaveItemLocation);
         Button addItem = addItemLocationView.findViewById(R.id.goAddLocation);
+
+        itemsLabel.setText("Items");
 
         dialogBuilder.setView(addItemLocationView);
         dialog = dialogBuilder.create();
