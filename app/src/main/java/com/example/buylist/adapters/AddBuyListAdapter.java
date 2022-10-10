@@ -22,7 +22,6 @@ public class AddBuyListAdapter extends RecyclerView.Adapter<AddBuyListAdapter.Vi
     public ArrayList<Purchase> aux;
 
     public AddBuyListAdapter(){
-
     }
 
     public void setItemLocations(ArrayList<ItemLocation> itemLocations) {
@@ -43,12 +42,15 @@ public class AddBuyListAdapter extends RecyclerView.Adapter<AddBuyListAdapter.Vi
         holder.locationName.setText(itemLocations.get(position).getLocation().getName());
         holder.price.setText(String.valueOf(itemLocations.get(position).getPrice()));
         holder.quantity.setText("1");
+        //Actions taken upon checking or unchecking the element of the list
         holder.isSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(holder.isSelected.isChecked())
+                    //If checked it adds the selected item and quantity(Purchase) to an extra list
                     aux.add(new Purchase(itemLocations.get(holder.getAdapterPosition()),Integer.parseInt(holder.quantity.getText().toString())));
                 else
+                    //If unchecked removes Purchases added to the extra list based on the item.
                     for(Purchase p: aux)
                         if(p.getItemLocation().compareTo(itemLocations.get(holder.getAdapterPosition()))>0)
                             aux.remove(p);
