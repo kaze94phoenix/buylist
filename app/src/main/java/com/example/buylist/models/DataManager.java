@@ -23,6 +23,7 @@ public class DataManager {
     private static final String LOCATIONS = "locations";
     private static final String ITEM_LOCATIONS = "item_locations";
     private static final String BUYLISTS = "buylists";
+    private static final String PURCHASES = "purchases";
 
     private SharedPreferences sharedPreference;
     private SharedPreferences.Editor editor;
@@ -34,6 +35,7 @@ public class DataManager {
     private ArrayList<Location> locations;
     private ArrayList<ItemLocation> itemLocations;
     private ArrayList<BuyList> buyLists;
+    private ArrayList<Purchase> purchases;
 
     public DataManager(Context context) {
         sharedPreference = context.getSharedPreferences("shopping_db",Context.MODE_PRIVATE);
@@ -67,6 +69,11 @@ public class DataManager {
         if(buyLists ==null)
             buyLists = new ArrayList<BuyList>();
 
+        Type typePurchase = new TypeToken<ArrayList<Purchase>>(){}.getType();
+        purchases = gson.fromJson(sharedPreference.getString(PURCHASES,null),typePurchase);
+        if( purchases==null)
+            purchases = new ArrayList<Purchase>();
+
 
     }
 
@@ -89,6 +96,17 @@ public class DataManager {
         editor.commit();
 
 
+    }
+
+
+    public void setPurchases(ArrayList<Purchase> purchases){
+        editor.putString(PURCHASES,gson.toJson(purchases));
+        editor.commit();
+    }
+
+
+    public ArrayList<Purchase> getPurchases(){
+        return purchases;
     }
 
 

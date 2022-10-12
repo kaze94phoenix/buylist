@@ -51,11 +51,7 @@ public class BuylistFragment extends Fragment {
         dataManager = new DataManager(getActivity());
         buyListAdapter = new BuyListAdapter();
 
-
-
-        purchases = dataManager.getBuyLists().get(0).getPurchases();
-
-        buyListAdapter.setBuylist(purchases);
+        buyListAdapter.setBuylist(dataManager.getPurchases());
 
         buylist = view.findViewById(R.id.buylist);
 
@@ -65,6 +61,8 @@ public class BuylistFragment extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
+
+
 
 
 }
