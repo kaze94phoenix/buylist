@@ -26,11 +26,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
  */
 public class BuylistFragment extends Fragment {
 
-    RecyclerView buylistList;
-    DataManager dataManager;
-    BuyListListAdapter buyListListAdapter;
-    Intent intent;
-    FloatingActionButton addBuyListBtn;
 
     public BuylistFragment() {
         // Required empty public constructor
@@ -41,32 +36,8 @@ public class BuylistFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_buylist, container, false);
-        dataManager = new DataManager(getActivity());
-        buyListListAdapter = new BuyListListAdapter();
-
-        buylistList = view.findViewById(R.id.buyListListTest);
-
-        buyListListAdapter.setActivity(getActivity());
-        buyListListAdapter.setBuyLists(dataManager.getBuyLists());
-
-        buylistList.setAdapter(buyListListAdapter);
-        buylistList.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        addBuyListBtn = view.findViewById(R.id.addBuylistBtn);
-
-        addBuyListBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToAddBuyList();
-            }
-        });
-
-        return view;
+        return inflater.inflate(R.layout.fragment_buylist, container, false);
     }
 
-    public void goToAddBuyList(){
-        intent = new Intent(getActivity(), AddBuyListActivity.class);
-        startActivity(intent);
-    }
+
 }
