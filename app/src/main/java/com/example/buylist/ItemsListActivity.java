@@ -114,12 +114,6 @@ public class ItemsListActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
-
-
-
-        //Intent intent = new Intent(this,AddItemActivity.class);
-        //startActivity(intent);
     }
 
 

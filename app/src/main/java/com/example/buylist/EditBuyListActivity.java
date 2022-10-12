@@ -22,6 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class EditBuyListActivity extends AppCompatActivity {
+    //Same as the AddBuyListActivity
     private AlertDialog dialog;
     private AlertDialog.Builder dialogBuilder;
     private RecyclerView buylist;
@@ -84,7 +85,6 @@ public class EditBuyListActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // test = new ArrayList<>();
 
                 if (purchases.isEmpty())
                     for (Purchase p : listAdapter.aux)

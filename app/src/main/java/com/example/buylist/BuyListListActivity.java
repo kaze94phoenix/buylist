@@ -15,7 +15,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class BuyListListActivity extends AppCompatActivity {
 
     RecyclerView buylistList;
-    //FloatingActionButton addBuylist;
     DataManager dataManager;
     BuyListListAdapter buyListListAdapter;
     Intent intent;
@@ -29,7 +28,6 @@ public class BuyListListActivity extends AppCompatActivity {
         buyListListAdapter = new BuyListListAdapter();
 
         buylistList = findViewById(R.id.buyListListRV);
-        //addBuylist = findViewById(R.id.addBuylistBtn);
 
         buyListListAdapter.setActivity(this);
         buyListListAdapter.setBuyLists(dataManager.getBuyLists());
