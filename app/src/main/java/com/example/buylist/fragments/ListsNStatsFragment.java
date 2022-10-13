@@ -44,7 +44,7 @@ public class ListsNStatsFragment extends Fragment {
 
         tabLayout.setupWithViewPager(viewPager);
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(), 0);
-        viewPagerAdapter.addFragment(buylistFragment,"Buylists");
+        viewPagerAdapter.addFragment(buylistFragment,"Buylist");
         viewPagerAdapter.addFragment(statisticsFragment,"Statistics");
         viewPager.setAdapter(viewPagerAdapter);
 

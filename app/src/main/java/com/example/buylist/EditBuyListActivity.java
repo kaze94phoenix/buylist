@@ -39,6 +39,7 @@ public class EditBuyListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_buy_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         dataManager = new DataManager(this);
         buyListAdapter = new BuyListAdapter();
 

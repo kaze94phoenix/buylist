@@ -1,5 +1,6 @@
 package com.example.buylist.adapters;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buylist.R;
+import com.example.buylist.models.DataManager;
 import com.example.buylist.models.Purchase;
 
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ import java.util.zip.Inflater;
 public class BuyListAdapter extends RecyclerView.Adapter<BuyListAdapter.ViewHolder> {
 
     ArrayList<Purchase> buylist;
+    DataManager dataManager;
 
     public BuyListAdapter(){
         buylist = new ArrayList<>();
@@ -39,12 +42,16 @@ public class BuyListAdapter extends RecyclerView.Adapter<BuyListAdapter.ViewHold
         holder.quantity.setText(buylist.get(position).getQuantity()+" Unit(s)");
     }
 
+
+
     @Override
     public int getItemCount() {
         return buylist.size();
     }
 
-
+    public void setDataManager(DataManager dataManager){
+        this.dataManager = dataManager;
+    }
     public void setBuylist(ArrayList<Purchase> buylist) {
         this.buylist = buylist;
     }
@@ -81,6 +88,7 @@ public class BuyListAdapter extends RecyclerView.Adapter<BuyListAdapter.ViewHold
                         quantityEdit.setText(String.valueOf(buylist.get(getAdapterPosition()).getQuantity()));
                     } else {
                         buylist.get(getAdapterPosition()).setQuantity(Integer.parseInt(quantityEdit.getText().toString()));
+                        dataManager.setPurchases(buylist);
                         notifyItemChanged(getAdapterPosition());
                         quantity.setVisibility(View.VISIBLE);
                         quantityEdit.setVisibility(View.INVISIBLE);
@@ -89,6 +97,7 @@ public class BuyListAdapter extends RecyclerView.Adapter<BuyListAdapter.ViewHold
 
                 case(R.id.removeBuylist):
                     buylist.remove(getAdapterPosition());
+                    dataManager.setPurchases(buylist);
                     notifyItemRemoved(getAdapterPosition());
                     break;
 

@@ -25,7 +25,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class StatisticsFragment extends Fragment {
 
     RecyclerView buylistList;
-    DataManager dataManager;
+    public DataManager dataManager;
     BuyListListAdapter buyListListAdapter;
     Intent intent;
     FloatingActionButton addBuyListBtn;
