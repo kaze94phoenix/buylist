@@ -14,14 +14,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.buylist.AddBuyListActivity;
+import com.example.buylist.MainActivity;
 import com.example.buylist.R;
 import com.example.buylist.adapters.AddBuyListAdapter;
 import com.example.buylist.adapters.BuyListAdapter;
+import com.example.buylist.models.BuyList;
 import com.example.buylist.models.DataManager;
 import com.example.buylist.models.Purchase;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,9 +55,9 @@ public class BuylistFragment extends Fragment {
 
         dataManager = new DataManager(getActivity());
         buyListAdapter = new BuyListAdapter();
-        purchases = new ArrayList<>();
+        purchases = dataManager.getPurchases();
 
-        buyListAdapter.setBuylist(dataManager.getPurchases());
+        buyListAdapter.setBuylist(purchases);
         buyListAdapter.setDataManager(dataManager);
 
         buylist = view.findViewById(R.id.buylist);
@@ -149,7 +154,8 @@ public class BuylistFragment extends Fragment {
     }
 
     public void saveBuyListItems() {
-            dataManager.setPurchases(purchases);
+        Date date = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DATE);
+        dataManager.addBuyList(new BuyList("BuyList #" + dataManager.getBuyLists().size(), date, purchases));
             Toast.makeText(getContext(), "List Saved", Toast.LENGTH_SHORT).show();
 
     }

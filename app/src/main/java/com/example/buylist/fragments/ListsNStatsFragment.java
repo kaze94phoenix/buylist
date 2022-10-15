@@ -8,16 +8,13 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.buylist.R;
 import com.example.buylist.adapters.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ListsNStatsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class ListsNStatsFragment extends Fragment {
 
     ViewPager viewPager;
@@ -42,11 +39,14 @@ public class ListsNStatsFragment extends Fragment {
         viewPager = view.findViewById(R.id.viewPagerMain);
         tabLayout = view.findViewById(R.id.tabMain);
 
-        tabLayout.setupWithViewPager(viewPager);
+
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(), 0);
         viewPagerAdapter.addFragment(buylistFragment,"Buylist");
         viewPagerAdapter.addFragment(statisticsFragment,"Statistics");
         viewPager.setAdapter(viewPagerAdapter);
+
+        tabLayout.setupWithViewPager(viewPager);
+
 
 
 

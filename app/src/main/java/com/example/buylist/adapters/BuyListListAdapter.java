@@ -40,6 +40,7 @@ public class BuyListListAdapter extends RecyclerView.Adapter<BuyListListAdapter.
 
     public void setBuyLists(ArrayList<BuyList> buyLists) {
         this.buyLists = buyLists;
+        notifyDataSetChanged();
     }
 
     public void setActivity(Activity activity){

@@ -23,6 +23,10 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         titles.add(title);
     }
 
+    public void setFragment(Fragment fragment, int position){
+        fragments.set(position,fragment);
+    }
+
 
     @NonNull
     @Override
