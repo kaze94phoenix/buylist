@@ -154,6 +154,7 @@ public class BuylistFragment extends Fragment {
     }
 
     public void saveBuyListItems() {
+        dataManager = new DataManager(getActivity());
         Date date = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DATE);
         dataManager.addBuyList(new BuyList("BuyList #" + dataManager.getBuyLists().size(), date, purchases));
             Toast.makeText(getContext(), "List Saved", Toast.LENGTH_SHORT).show();
