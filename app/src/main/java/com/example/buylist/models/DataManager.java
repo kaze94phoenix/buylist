@@ -38,82 +38,87 @@ public class DataManager {
     private ArrayList<Purchase> purchases;
 
     public DataManager(Context context) {
-        sharedPreference = context.getSharedPreferences("shopping_db",Context.MODE_PRIVATE);
+        sharedPreference = context.getSharedPreferences("shopping_db", Context.MODE_PRIVATE);
         editor = sharedPreference.edit();
 
         gson = new Gson();
 
-        Type typeTypeItem = new TypeToken<ArrayList<ItemType>>(){}.getType();
-        itemTypes = gson.fromJson(sharedPreference.getString(ITEMS_TYPE,null),typeTypeItem);
-        if(itemTypes ==null)
+        Type typeTypeItem = new TypeToken<ArrayList<ItemType>>() {
+        }.getType();
+        itemTypes = gson.fromJson(sharedPreference.getString(ITEMS_TYPE, null), typeTypeItem);
+        if (itemTypes == null)
             itemTypes = new ArrayList<ItemType>();
 
-        Type typeItem = new TypeToken<ArrayList<Item>>(){}.getType();
-        items = gson.fromJson(sharedPreference.getString(ITEMS,null),typeItem);
-        if(items==null)
+        Type typeItem = new TypeToken<ArrayList<Item>>() {
+        }.getType();
+        items = gson.fromJson(sharedPreference.getString(ITEMS, null), typeItem);
+        if (items == null)
             items = new ArrayList<Item>();
 
 
-        Type typeLocation = new TypeToken<ArrayList<Location>>(){}.getType();
-        locations = gson.fromJson(sharedPreference.getString(LOCATIONS,null),typeLocation);
-        if(locations==null)
+        Type typeLocation = new TypeToken<ArrayList<Location>>() {
+        }.getType();
+        locations = gson.fromJson(sharedPreference.getString(LOCATIONS, null), typeLocation);
+        if (locations == null)
             locations = new ArrayList<Location>();
 
-        Type typeItemLocation = new TypeToken<ArrayList<ItemLocation>>(){}.getType();
-        itemLocations = gson.fromJson(sharedPreference.getString(ITEM_LOCATIONS,null),typeItemLocation);
-        if(itemLocations==null)
+        Type typeItemLocation = new TypeToken<ArrayList<ItemLocation>>() {
+        }.getType();
+        itemLocations = gson.fromJson(sharedPreference.getString(ITEM_LOCATIONS, null), typeItemLocation);
+        if (itemLocations == null)
             itemLocations = new ArrayList<ItemLocation>();
 
-        Type typeBuylist = new TypeToken<ArrayList<BuyList>>(){}.getType();
-        buyLists = gson.fromJson(sharedPreference.getString(BUYLISTS,null),typeBuylist);
-        if(buyLists ==null)
+        Type typeBuylist = new TypeToken<ArrayList<BuyList>>() {
+        }.getType();
+        buyLists = gson.fromJson(sharedPreference.getString(BUYLISTS, null), typeBuylist);
+        if (buyLists == null)
             buyLists = new ArrayList<BuyList>();
 
-        Type typePurchase = new TypeToken<ArrayList<Purchase>>(){}.getType();
-        purchases = gson.fromJson(sharedPreference.getString(PURCHASES,null),typePurchase);
-        if( purchases==null)
+        Type typePurchase = new TypeToken<ArrayList<Purchase>>() {
+        }.getType();
+        purchases = gson.fromJson(sharedPreference.getString(PURCHASES, null), typePurchase);
+        if (purchases == null)
             purchases = new ArrayList<Purchase>();
 
 
     }
 
-//Item Type
-    public ArrayList<ItemType> getItemTypes(){
-       return itemTypes;
+    //Item Type
+    public ArrayList<ItemType> getItemTypes() {
+        return itemTypes;
     }
 
 
-
-    public void addItemType(ItemType itemType){
+    public void addItemType(ItemType itemType) {
         itemTypes.add(itemType);
-        editor.putString(ITEMS_TYPE,gson.toJson(itemTypes));
+        editor.putString(ITEMS_TYPE, gson.toJson(itemTypes));
         editor.commit();
     }
 
-    public void deleteItemType(int index){
+    public void deleteItemType(int index) {
         itemTypes.remove(index);
-        editor.putString(ITEMS_TYPE,gson.toJson(itemTypes));
+        editor.putString(ITEMS_TYPE, gson.toJson(itemTypes));
         editor.commit();
 
 
     }
 
 
-    public void setPurchases(ArrayList<Purchase> purchases){
-        editor.putString(PURCHASES,gson.toJson(purchases));
+    public void setPurchases(ArrayList<Purchase> purchases) {
+        editor.putString(PURCHASES, gson.toJson(purchases));
         editor.commit();
     }
 
 
-    public ArrayList<Purchase> getPurchases(){
+    public ArrayList<Purchase> getPurchases() {
         return purchases;
     }
 
 
     //Item
-    public void editItem(int position, Item item){
-        items.set(position,item);
-        editor.putString(ITEMS,gson.toJson(items));
+    public void editItem(int position, Item item) {
+        items.set(position, item);
+        editor.putString(ITEMS, gson.toJson(items));
         editor.commit();
     }
 
@@ -121,15 +126,15 @@ public class DataManager {
         return items;
     }
 
-    public void addItems(Item item){
+    public void addItems(Item item) {
         items.add(item);
-        editor.putString(ITEMS,gson.toJson(items));
+        editor.putString(ITEMS, gson.toJson(items));
         editor.commit();
     }
 
-    public void deleteItem(int position){
+    public void deleteItem(int position) {
         items.remove(position);
-        editor.putString(ITEMS,gson.toJson(items));
+        editor.putString(ITEMS, gson.toJson(items));
         editor.commit();
     }
 
@@ -138,9 +143,9 @@ public class DataManager {
         return locations;
     }
 
-    public void addLocation(Location location){
+    public void addLocation(Location location) {
         locations.add(location);
-        editor.putString(LOCATIONS,gson.toJson(locations));
+        editor.putString(LOCATIONS, gson.toJson(locations));
         editor.commit();
     }
 
@@ -151,68 +156,68 @@ public class DataManager {
 
     public ArrayList<ItemLocation> getItemLocations(int itemId) {
         ArrayList<ItemLocation> another = new ArrayList<ItemLocation>();
-         for(ItemLocation aux: itemLocations)
-            if(getItems().get(itemId).compareTo(aux.getItem())>0)
+        for (ItemLocation aux : itemLocations)
+            if (getItems().get(itemId).compareTo(aux.getItem()) > 0)
                 another.add(aux);
         return another;
     }
 
     public ArrayList<ItemLocation> getLocationItems(int locationId) {
         ArrayList<ItemLocation> another = new ArrayList<ItemLocation>();
-        for(ItemLocation aux: itemLocations)
-            if(getLocations().get(locationId).compareTo(aux.getLocation())>0)
+        for (ItemLocation aux : itemLocations)
+            if (getLocations().get(locationId).compareTo(aux.getLocation()) > 0)
                 another.add(aux);
         return another;
     }
 
-    public void addItemLocation(ItemLocation itemLocation){
+    public void addItemLocation(ItemLocation itemLocation) {
         itemLocations.add(itemLocation);
-        editor.putString(ITEM_LOCATIONS,gson.toJson(itemLocations));
+        editor.putString(ITEM_LOCATIONS, gson.toJson(itemLocations));
         editor.commit();
     }
 
-    public void editItemLocation(int position, ItemLocation itemLocation){
-        itemLocations.set(position,itemLocation);
-        editor.putString(ITEM_LOCATIONS,gson.toJson(itemLocations));
+    public void editItemLocation(int position, ItemLocation itemLocation) {
+        itemLocations.set(position, itemLocation);
+        editor.putString(ITEM_LOCATIONS, gson.toJson(itemLocations));
         editor.commit();
     }
 
-    public void deleteItemLocation(int position){
+    public void deleteItemLocation(int position) {
         itemLocations.remove(position);
-        editor.putString(ITEM_LOCATIONS,gson.toJson(itemLocations));
+        editor.putString(ITEM_LOCATIONS, gson.toJson(itemLocations));
         editor.commit();
     }
 
 
     // BuyList
-    public ArrayList<BuyList>  getBuyLists(){
+    public ArrayList<BuyList> getBuyLists() {
         return buyLists;
     }
 
-    public void addBuyList(BuyList buyList){
+    public void addBuyList(BuyList buyList) {
         buyLists.add(buyList);
-        editor.putString(BUYLISTS,gson.toJson(buyLists));
+        editor.putString(BUYLISTS, gson.toJson(buyLists));
         editor.commit();
     }
 
-    public void editBuyList(int position, BuyList buyList){
-        buyLists.set(position,buyList);
-        editor.putString(BUYLISTS,gson.toJson(buyLists));
+    public void editBuyList(int position, BuyList buyList) {
+        buyLists.set(position, buyList);
+        editor.putString(BUYLISTS, gson.toJson(buyLists));
         editor.commit();
     }
 
-    public void deleteBuyList(int position){
+    public void deleteBuyList(int position) {
         buyLists.remove(position);
-        editor.putString(BUYLISTS,gson.toJson(buyLists));
+        editor.putString(BUYLISTS, gson.toJson(buyLists));
         editor.commit();
     }
 
-    public Double avgPrice(int position){
-        Double SUM=0.0;
-        for(ItemLocation iL: getItemLocations(position))
-            SUM+=iL.getPrice();
+    public Double avgPrice(int position) {
+        Double SUM = 0.0;
+        for (ItemLocation iL : getItemLocations(position))
+            SUM += iL.getPrice();
 
-        return SUM/getItemLocations(position).size();
+        return SUM / getItemLocations(position).size();
     }
 
 }

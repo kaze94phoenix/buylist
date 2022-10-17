@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.buylist.AddBuyListActivity;
@@ -21,6 +24,7 @@ import com.example.buylist.adapters.AddBuyListAdapter;
 import com.example.buylist.adapters.BuyListAdapter;
 import com.example.buylist.models.BuyList;
 import com.example.buylist.models.DataManager;
+import com.example.buylist.models.Location;
 import com.example.buylist.models.Purchase;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -94,9 +98,18 @@ public class BuylistFragment extends Fragment {
         dialogBuilder = new AlertDialog.Builder(getContext());
         final View addItemView = getLayoutInflater().inflate(R.layout.add_item_buylist, null);
 
+        Spinner locationSpinner = addItemView.findViewById(R.id.locationFilter);
+        ArrayList<String> locationNames = new ArrayList<>();
+        locationNames.add("All");
+        for(Location loc: dataManager.getLocations())
+            locationNames.add(loc.getName());
+        ArrayAdapter<String> locations = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item,locationNames);
+        locationSpinner.setAdapter(locations);
+
         Button add = addItemView.findViewById(R.id.addSelected);
         Button dismiss = addItemView.findViewById(R.id.cancelPopout);
 
+        //Composing the items list
         RecyclerView items = addItemView.findViewById(R.id.itemsRecyclerView);
         AddBuyListAdapter listAdapter = new AddBuyListAdapter();
         listAdapter.setItemLocations(dataManager.getItemLocations());
@@ -147,6 +160,27 @@ public class BuylistFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
+            }
+        });
+
+        locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i==0){
+                    listAdapter.setItemLocations(dataManager.getItemLocations());
+                    items.setAdapter(listAdapter);
+                    items.setLayoutManager(new LinearLayoutManager(getContext()));
+                }else {
+
+                    listAdapter.setItemLocations(dataManager.getLocationItems(i - 1));
+                    items.setAdapter(listAdapter);
+                    items.setLayoutManager(new LinearLayoutManager(getContext()));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 
