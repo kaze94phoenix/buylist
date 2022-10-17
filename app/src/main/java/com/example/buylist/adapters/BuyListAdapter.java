@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.buylist.R;
 import com.example.buylist.models.DataManager;
 import com.example.buylist.models.Purchase;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.zip.Inflater;
@@ -96,9 +97,19 @@ public class BuyListAdapter extends RecyclerView.Adapter<BuyListAdapter.ViewHold
                     break;
 
                 case(R.id.removeBuylist):
-                    buylist.remove(getAdapterPosition());
+                    int position = getAdapterPosition();
+                    Purchase temp = buylist.get(position);
+                    buylist.remove(position);
                     dataManager.setPurchases(buylist);
-                    notifyItemRemoved(getAdapterPosition());
+                    notifyItemRemoved(position);
+                    Snackbar.make((View) itemView.getParent(),"Removing "+temp.getItemLocation().getItem().getName(),Snackbar.LENGTH_LONG).setAction("Undo", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            buylist.add(position,temp);
+                            dataManager.setPurchases(buylist);
+                            notifyItemInserted(position);
+                        }
+                    }).show();
                     break;
 
             }
