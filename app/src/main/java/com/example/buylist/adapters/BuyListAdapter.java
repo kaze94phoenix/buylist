@@ -43,8 +43,6 @@ public class BuyListAdapter extends RecyclerView.Adapter<BuyListAdapter.ViewHold
         holder.quantity.setText(buylist.get(position).getQuantity()+" Unit(s)");
     }
 
-
-
     @Override
     public int getItemCount() {
         return buylist.size();
@@ -56,6 +54,7 @@ public class BuyListAdapter extends RecyclerView.Adapter<BuyListAdapter.ViewHold
     public void setBuylist(ArrayList<Purchase> buylist) {
         this.buylist = buylist;
     }
+
 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
