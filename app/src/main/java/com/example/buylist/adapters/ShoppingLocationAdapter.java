@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buylist.LocationDetailsActivity;
 import com.example.buylist.R;
+import com.example.buylist.models.DataManager;
 import com.example.buylist.models.Location;
 
 import java.util.ArrayList;
@@ -61,6 +62,8 @@ public class ShoppingLocationAdapter extends RecyclerView.Adapter<ShoppingLocati
             Button editLocation, deleteLocation;
             TextView locationName;
             RelativeLayout relativeLayout;
+            DataManager dataManager;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -72,6 +75,8 @@ public class ShoppingLocationAdapter extends RecyclerView.Adapter<ShoppingLocati
             editLocation.setOnClickListener(this);
             deleteLocation.setOnClickListener(this);
             relativeLayout.setOnClickListener(this);
+
+            dataManager = new DataManager(itemView.getContext());
 
         }
 
@@ -105,6 +110,17 @@ public class ShoppingLocationAdapter extends RecyclerView.Adapter<ShoppingLocati
                     noBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+
+
+                    yesBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            locations.remove(getAdapterPosition());
+                            dataManager.deleteLocation(getAdapterPosition());
+                            notifyItemRemoved(getAdapterPosition());
                             dialog.dismiss();
                         }
                     });

@@ -23,9 +23,15 @@ public class BuyListAdapter extends RecyclerView.Adapter<BuyListAdapter.ViewHold
 
     ArrayList<Purchase> buylist;
     DataManager dataManager;
+    boolean options;
 
     public BuyListAdapter(){
         buylist = new ArrayList<>();
+        options = true;
+    }
+
+    public void hasOptions(boolean options){
+        this.options=options;
     }
 
     @NonNull
@@ -41,6 +47,12 @@ public class BuyListAdapter extends RecyclerView.Adapter<BuyListAdapter.ViewHold
         holder.location.setText(buylist.get(position).getItemLocation().getLocation().getName());
         holder.price.setText(String.valueOf(buylist.get(position).getItemLocation().getPrice()*buylist.get(position).getQuantity()));
         holder.quantity.setText(buylist.get(position).getQuantity()+" Unit(s)");
+
+        if(!options){
+            holder.edit.setVisibility(View.INVISIBLE);
+            holder.delete.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     @Override

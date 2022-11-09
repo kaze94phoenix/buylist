@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -11,6 +13,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.buylist.AddBuyListActivity;
 import com.example.buylist.R;
@@ -20,17 +25,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link StatisticsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class StatisticsFragment extends Fragment {
 
-    RecyclerView buylistList;
-    public DataManager dataManager;
-    private SwipeRefreshLayout swipeRefreshLayout;
-    BuyListListAdapter buyListListAdapter;
-    Intent intent;
-    FloatingActionButton addBuyListBtn;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+    RadioButton listsButton, balanceButton;
 
 
     public StatisticsFragment() {
@@ -42,50 +43,47 @@ public class StatisticsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        ListsFragment listsFragment = new ListsFragment();
+        BalanceFragment balanceFragment = new BalanceFragment();
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_statistics, container, false);
-        dataManager = new DataManager(getActivity());
-        buyListListAdapter = new BuyListListAdapter();
 
-        buylistList = view.findViewById(R.id.buyListListTest);
-
-        buyListListAdapter.setActivity(getActivity());
-        buyListListAdapter.setBuyLists(dataManager.getBuyLists());
-
-        buylistList.setAdapter(buyListListAdapter);
-        buylistList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        listsButton = view.findViewById(R.id.listsButton);
+        balanceButton = view.findViewById(R.id.balanceButton);
 
 
-        swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
-
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                dataManager = new DataManager(getContext());
-                buyListListAdapter.setBuyLists(dataManager.getBuyLists());
-                buylistList.setAdapter(buyListListAdapter);
-                buylistList.setLayoutManager(new LinearLayoutManager(getContext()));
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
+        replaceFragment(balanceFragment);
 
 
-        addBuyListBtn = view.findViewById(R.id.addBuylistBtn);
-
-        addBuyListBtn.setOnClickListener(new View.OnClickListener() {
+        listsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToAddBuyList();
+                if(listsButton.isChecked())
+                    replaceFragment(listsFragment);
             }
         });
+
+        balanceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(balanceButton.isChecked())
+                    replaceFragment(balanceFragment);
+            }
+        });
+
 
         return view;
 
 
     }
 
-    public void goToAddBuyList(){
-        intent = new Intent(getActivity(), AddBuyListActivity.class);
-        startActivity(intent);
+    //Custom method that replaces an active fragment for another passed on params
+    public void replaceFragment(Fragment fragment){
+            fragmentManager = getActivity().getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.statisticsLayout,fragment);
+            fragmentTransaction.commit();
     }
+
 }

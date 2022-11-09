@@ -42,6 +42,7 @@ public class EditBuyListActivity extends AppCompatActivity {
 
         dataManager = new DataManager(this);
         buyListAdapter = new BuyListAdapter();
+        buyListAdapter.hasOptions(false);
 
         intent = getIntent();
 
@@ -54,6 +55,7 @@ public class EditBuyListActivity extends AppCompatActivity {
         buyListAdapter.setBuylist(purchases);
         buylist.setAdapter(buyListAdapter);
         buylist.setLayoutManager(new LinearLayoutManager(EditBuyListActivity.this));
+
 
     }
 

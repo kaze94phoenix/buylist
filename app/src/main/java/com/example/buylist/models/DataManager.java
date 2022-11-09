@@ -95,31 +95,30 @@ public class DataManager {
         editor.commit();
     }
 
-    public void deleteItemType(int index) {
-        itemTypes.remove(index);
+    public void deleteItemType(int position) {
+        ItemType itemType = itemTypes.get(position);
+        itemTypes.remove(position);
         editor.putString(ITEMS_TYPE, gson.toJson(itemTypes));
         editor.commit();
-
-
-    }
-
-
-    public void setPurchases(ArrayList<Purchase> purchases) {
-        editor.putString(PURCHASES, gson.toJson(purchases));
-        editor.commit();
-    }
-
-
-    public ArrayList<Purchase> getPurchases() {
-        return purchases;
+        for (int i = 0; i < items.size(); i++)
+            if (items.get(i).getItemType().compareTo(itemType) > 0)
+                deleteItem(i);
     }
 
 
     //Item
     public void editItem(int position, Item item) {
+        Item itemA = items.get(position);
         items.set(position, item);
         editor.putString(ITEMS, gson.toJson(items));
         editor.commit();
+        for (int i = 0; i < itemLocations.size(); i++)
+            if (itemLocations.get(i).getItem().compareTo(itemA) > 0) {
+                ItemLocation itemLocation = itemLocations.get(i);
+                itemLocation.setItem(items.get(position));
+                editItemLocation(i, itemLocation);
+            }
+
     }
 
     public ArrayList<Item> getItems() {
@@ -133,9 +132,13 @@ public class DataManager {
     }
 
     public void deleteItem(int position) {
+        Item item = items.get(position);
         items.remove(position);
         editor.putString(ITEMS, gson.toJson(items));
         editor.commit();
+        for (int i = 0; i < itemLocations.size(); i++)
+            if (item.compareTo(itemLocations.get(i).getItem()) > 0)
+                deleteItemLocation(i);
     }
 
     //Location
@@ -148,6 +151,31 @@ public class DataManager {
         editor.putString(LOCATIONS, gson.toJson(locations));
         editor.commit();
     }
+
+    public void editLocation(int position, Location location) {
+        Location locationA = locations.get(position);
+        locations.set(position, location);
+        editor.putString(LOCATIONS, gson.toJson(locations));
+        editor.commit();
+        for (int i = 0; i < itemLocations.size(); i++)
+            if (itemLocations.get(i).getLocation().compareTo(locationA) > 0) {
+                ItemLocation itemLocation = itemLocations.get(i);
+                itemLocation.setItem(items.get(position));
+                editItemLocation(i, itemLocation);
+            }
+
+    }
+
+    public void deleteLocation(int position) {
+        Location location = locations.get(position);
+        locations.remove(position);
+        editor.putString(LOCATIONS, gson.toJson(locations));
+        editor.commit();
+        for (int i = 0; i < itemLocations.size(); i++)
+            if (location.compareTo(itemLocations.get(i).getLocation()) > 0)
+                deleteItemLocation(i);
+    }
+
 
     //Item Location
     public ArrayList<ItemLocation> getItemLocations() {
@@ -219,5 +247,17 @@ public class DataManager {
 
         return SUM / getItemLocations(position).size();
     }
+
+    //Purchase or Active Buylist
+    public void setPurchases(ArrayList<Purchase> purchases) {
+        editor.putString(PURCHASES, gson.toJson(purchases));
+        editor.commit();
+    }
+
+
+    public ArrayList<Purchase> getPurchases() {
+        return purchases;
+    }
+
 
 }
